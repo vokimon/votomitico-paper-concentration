@@ -1,12 +1,14 @@
 import colour
 import cairosvg
 
+def spnum(n):
+    return f"{n:,}".translate(str.maketrans({',':'.', '.':','}))
 
-def darken(color, factor=0.6):
+def darken(color, factor=0.83):
     try:
         base_color = colour.Color(color)
     except ValueError:
-        return "#000000"
+        return colour.Color("grey").hex
 
     hsl = colour.rgb2hsl(base_color.rgb)
     hsl = (hsl[0], hsl[1], max(0, min(1, hsl[2] * factor)))
@@ -51,7 +53,7 @@ def draw_annotation(
     """
     # Retornar el path generado en formato SVG
     return (
-        f'<path d="M {target_x} {target_y} L {label_x} {label_y}" stroke="{color}" stroke-width="1" />'
+        f'<path d="M {target_x} {target_y} L {target_x} {(target_y + label_y)/2} {label_x} {label_y}" fill="none" stroke="{color}" stroke-width="1" />'
         + draw_text(
             label_x, label_y, text, horizontal_alignment, vertical_alignment, font_size
         )
@@ -59,7 +61,7 @@ def draw_annotation(
 
 
 def draw_bar_segment(
-    current_x, y, width, height, fill_color, stroke_color="#000000", stroke_width=2
+    current_x, y, width, height, fill_color, stroke_width=4
 ):
     return f'<rect x="{current_x}" y="{y}" width="{width}" height="{height}" fill="{fill_color}" stroke="{darken(fill_color)}" stroke-width="{stroke_width}" />'
 
@@ -71,49 +73,47 @@ def draw_legend(legend_items, legend_x, legend_y, font_size=14, border_color="#0
             f'<rect x="{legend_x}" y="{legend_y}" width="20" height="20" fill="{color}" stroke="{border_color}" stroke-width="2" />'
             f'<text x="{legend_x + 25}" y="{legend_y + 15}" font-size="{font_size}" font-family="sans-serif">{label}</text>'
         )
-        legend_x += 160
+        legend_x += 230
     return legend
 
 
 def generate_seat_bar(
-    total_votes=4700, votes_per_seat=1000, output_basename="seats-and-remainder"
+    votes=648,
+    votes_per_seat=120,
+    output_basename="seats-and-remainder"
 ):
-    seats = total_votes // votes_per_seat
-    remainder_votes = total_votes % votes_per_seat
-    votes_to_next = votes_per_seat - remainder_votes if remainder_votes > 0 else 0
+    seats = votes // votes_per_seat
+    remainder_votes = votes % votes_per_seat
 
-    margin = 40
-    annotation_height = 40
-    bar_height = 40
-    legend_height = 60
-    bar_width = 600
-    svg_width = bar_width + 2 * margin
-    svg_height = margin + annotation_height + bar_height + legend_height + margin
     seat_color = "#4F81BD"
-    remainder_color = "#FF6F00"
+    remainder_color = "#F3A322"
     missing_color = "transparent"
     border_color = "#000000"
+
+    margin = 20
+    annotation_height = 30
+    bar_height = 40
+    legend_height = 30
+    bar_width = 600
+    svg_width = margin + bar_width + 2 * margin
+    svg_height = margin + annotation_height + bar_height + legend_height + margin
     stroke_width = 2
     font_size = 14
     seat_width = bar_width / (seats + 1)
     remainder_width = seat_width * (remainder_votes / votes_per_seat)
-    missing_width = seat_width * (votes_to_next / votes_per_seat)
     bar_y = margin + annotation_height
     legend_y = bar_y + bar_height + 30
-    votes_y = margin + annotation_height - 10
-    votes_x = seat_width * seats + remainder_width
-    cut_x = seat_width
-    next_seat_x = seat_width * (seats + 1)
+    votes_x = margin + seat_width * seats + remainder_width
+    cut_x = margin + seat_width
+    next_seat_x = margin + seat_width * (seats + 1)
 
     svg = f"""<?xml version="1.0" encoding="UTF-8"?>
 <svg width="{svg_width}" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate({margin}, {margin})">
 """
-    svg += draw_bar_segment(
-        -margin, -margin, svg_width, svg_height, "beige", "blue", 10
-    )
+    # border (debug)
+    #svg += draw_bar_segment(0, 0, svg_width, svg_height, "beige", 10)
 
-    current_x = 0
+    current_x = margin
 
     svg += draw_bar_segment(
         current_x,
@@ -121,8 +121,6 @@ def generate_seat_bar(
         bar_width,
         bar_height,
         missing_color,
-        border_color,
-        stroke_width,
     )
     for _ in range(seats):
         svg += draw_bar_segment(
@@ -131,8 +129,6 @@ def generate_seat_bar(
             seat_width,
             bar_height,
             seat_color,
-            border_color,
-            stroke_width,
         )
         current_x += seat_width
     if remainder_votes > 0:
@@ -142,39 +138,59 @@ def generate_seat_bar(
             remainder_width,
             bar_height,
             remainder_color,
-            border_color,
-            stroke_width,
         )
         current_x += remainder_width
 
     svg += draw_annotation(
-        "Precio de corte", cut_x, votes_y, cut_x - 40, votes_y - 20, "top", "left"
+        f"Precio de corte ({spnum(votes_per_seat)})",
+        cut_x, bar_y , cut_x + 20, legend_y, "top", "left"
     )
     svg += draw_annotation(
-        "Votos", votes_x, votes_y, votes_x + 40, votes_y - 20, "top", "right"
+        f"Restos ({spnum(remainder_votes)})",
+        margin + seat_width * seats + remainder_width / 2,
+        bar_y + bar_height / 2,
+        margin + seat_width * seats + remainder_width / 2 - 20,
+        legend_y,
+        "top", "right"
+    )
+    svg += draw_text(
+        margin, bar_y - 25,
+        f"Votos a la candidatura ({spnum(votes)})",
+        "left", "bottom", 
     )
     next_seat_y_top = bar_y + bar_height
     next_seat_y_label = next_seat_y_top + 10
-    svg += draw_annotation(
-        "Siguiente escaño",
-        next_seat_x,
-        next_seat_y_top,
-        next_seat_x - 40,
-        next_seat_y_label + 20,
-        "bottom",
-        "center",
-    )
-    legend_items = [("Escaños", seat_color), ("Restos", remainder_color)]
-    svg += draw_legend(legend_items, margin, legend_y, font_size, border_color)
-    svg += "</g></svg>"
+    for i in range(seats+2):
+        svg += draw_annotation(
+            f"{i}",
+            margin + seat_width * i,
+            bar_y + bar_height,
+            margin + seat_width * i,
+            bar_y + bar_height + 5,
+            "top",
+            "center",
+        )
+        svg += draw_annotation(
+            f"{spnum(i*votes_per_seat)}",
+            margin + seat_width * i,
+            bar_y,
+            margin + seat_width * i,
+            bar_y - 5,
+            "bottom",
+            "center",
+        )
+    legend_items = [("Votos que consiguen escaño", seat_color), ("Restos", remainder_color)]
+    #svg += draw_legend(legend_items, svg_width/2, legend_y, font_size, border_color)
+    svg += draw_text(margin, bar_y + bar_height + 20 , f"Escaños ({spnum(seats)})", "left", "top")
+
+    svg += "</svg>"
 
     svg_file = f"{output_basename}.svg"
-    with open(svg_file, "w") as f:
-        f.write(svg)
-
     pdf_file = f"{output_basename}.pdf"
     png_file = f"{output_basename}.png"
 
+    with open(svg_file, "w") as f:
+        f.write(svg)
     cairosvg.svg2pdf(url=svg_file, write_to=pdf_file)
     cairosvg.svg2png(url=svg_file, write_to=png_file)
 
