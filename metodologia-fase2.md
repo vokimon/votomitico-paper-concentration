@@ -12,26 +12,46 @@ en el resultado conjunto de ambos.
 ### Procedimiento
 
 1. **Establecimiento de un marco algebraico para D'Hondt**
-    Para superar la perspectiva procedural de D'Hondt y permitir su tratamiento algebraico,
-    se estableció un marco de trabajo que relaciona todas sus entidades (Votos, restos, cocientes, escaños) a partir de el precio de corte.
-
-2. **Cálculo probabilístico de los cambios en la representación**
-    Dada la incertidumbre de saber la magnitud de los restos,
-    se estableció su distribución de probabilidad,
-    que considerando un número de votos recibidos o emitidos,
-    permite calcular la probabilidad de un cambio en los escaños en cierto sentido.
-
-3. **Cruce de probabilidades entre emisor y receptor**  
-    Se construyó una representación gráfica del cruce de probabilidades
-    entre emisor y receptor de un trasvase que permite
-    conocer la probabilidad de cada posible resultado.
-
-4. **Comprobación de la coincidencia con los patrones cíclicos observados**  
-    Finalmente, se analizó la evolución de un trasvase progresivo de votos, en este modelo,
-    comprobando si se generaban los mismos patrones cíclicos que ya se habían observado empíricamente. 
+    Para superar las limitaciones de la perspectiva procedural de D'Hondt,
+    se propuso un marco algebràico,
+    con el _precio de corte_ como parámetro clave.
+    El _precio de corte_ condensa en un único valor el resultado del algoritmo,
+    permitiendo derivar los valores de salida,
+    a partir de las entradas con una relación algebraica simple.
+    
+    En este primer modelo,
+    también se consideró que el _precio de corte_ no cambiaba
+    como resultado de un trasvase entre dos candidaturas.
+    Esta suposición no es cierta pero simplificó el modelo
+    suficiente como para facilitar su abordaje.
 
 
-Después del procedimiento, lo siguiente es el **marco algebraico para D'Hondt**, donde detallamos las definiciones de los elementos clave como el precio de corte, los cocientes y los restos, con las correcciones y las aclaraciones que hemos hecho.
+2. **Cálculo probabilístico de los cambios en la representación** 
+
+    Se identificó el parámetro relevante en el modelo
+    que determina cuando se produce un cambio de representación de una candidatura.
+    Dada la incertidumbre a priori sobre el valor de este parámetro
+    en una situación inicial de referencia arbitraria,
+    se planteó un modelo probabilístico.
+    Este modelo permitió estimar la probabilidad de un cambio en los escaños,
+    cuando se alteran los votos a la candidatura en una cantidad determinada.
+
+3. **Probabilidad combinada de emisor y receptor**
+    Se planteó un escenario de trasvase,
+    en el que los cambios de votos en el emisor y receptor
+    se realizaban a la vez, pero con signo inverso.
+    Es decir, si uno ganaba escaños, el otro los perdía en la misma proporción.
+    Se combinaron las probabilidades
+    de ganancia y pérdida de escaños para cada candidatura,
+    con el objetivo de calcular la probabilidad de que se produzca un cierto cambio en signo y magnitud
+    en la representación conjunta de ambas candidaturas.
+
+4. **Contraste del modelo y las observaciones empíricas**
+    Finalmente, se analizó el impacto de un trasvase progresivo de votos en el modelo,
+    para comprobar si el cambio en los resultados del reparto
+    coincidía con las observaciones empíricas obtenidas del simulador.
+
+
 
 ### Marco algebraico para D'Hondt
 
