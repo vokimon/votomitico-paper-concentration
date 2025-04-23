@@ -1,0 +1,433 @@
+# Cuando te pida a partir de ahora una referencia, devuelvela en formato BiBTeX
+# con las siguientes características:
+# - DOI y URL en las referencias cuando estén disponibles.
+# - Notas explicativas sobre cada artículo, explicando el contenido,
+#   el enfoque del artículo (simulación, análisis teórico, etc.), y
+#   cualquier otro detalle relevante.
+# - Usa corchetes para las notas para que citeproc las procese bien.
+# - Las notas deben estar separadas por líneas para que sea fácil leerlas.
+# - Las notas deben ajustarse a un máximo de 80 caracteres por línea para
+#   que sea más fácil leerlas.
+
+@article{hill1974method,
+  title={The Method of D'Hondt and the Apportionment of Seats in Representative Assemblies},
+  author={Hill, Thomas P. L.},
+  journal={The Journal of Politics},
+  volume={36},
+  number={2},
+  pages={293--315},
+  year={1974},
+  publisher={Cambridge University Press},
+  note = {
+    Este artículo es una de las principales fuentes que explica el método de D'Hondt y
+    su aplicación en la asignación de escaños en sistemas representativos.}
+}
+
+@misc{congreso1985loreg,
+  author = {Congreso de los Diputados},
+  title = {Ley Orgánica 5/1985, de 19 de junio, del Régimen Electoral General (LOREG)},
+  year = {1985},
+  howpublished = {BOE núm. 150, 20 de junio de 1985},
+  note = {
+    Documento legal que establece el sistema electoral en España,
+    incluyendo el uso del método de D'Hondt en las elecciones generales y autonómicas.
+  }
+}
+
+@article{apellidoAño,
+  author = {Apellido, Nombre},
+  title = {Título del artículo},
+  journal = {Nombre del periódico},
+  year = {Año},
+  month = {Mes},
+  day = {Día},
+  url = {URL del artículo},  % solo si es un artículo en línea
+  note = {Accedido el: Fecha de acceso},  % solo si es un artículo en línea
+}
+
+@book{tversky1973availability,
+  title={Availability: A heuristic for judging frequency and probability},
+  author={Tversky, Amos and Kahneman, Daniel},
+  year={1973},
+  publisher={Cognitive Psychology},
+  volume={5},
+  pages={207--232},
+  journal={Cognitive Psychology},
+  doi={10.1016/0010-0285(73)90033-9},
+  note={Este artículo introduce el concepto de sesgo de disponibilidad}
+}
+
+
+@article{vallejo2012dhondt,
+  author    = {Vallejo, Pedro and Rivadeneira, Fabián and Lascano, Ana Lucía},
+  title     = {Análisis matemático al Método D'Hondt de asignación de escaños parlamentarios},
+  journal   = {Ingenius. Revista de Ciencia y Tecnología},
+  number    = {8},
+  year      = {2012},
+  pages     = {52--59},
+  url       = {https://revistas.ups.edu.ec/index.php/ingenius/article/view/8.2012.04},
+  note      = {Artículo con enfoque matemático que explora cómo pequeñas variaciones en los votos pueden alterar el reparto de escaños. Aunque no usa simuladores explícitos, la lógica que emplea se presta fácilmente a simulaciones.}
+}
+
+@article{oliveros2020balanced,
+  author    = {Oliveros, Fernando and Rodríguez, Sergio and Rodríguez, Antonio},
+  title     = {A proposal of a mathematically balanced electoral system},
+  journal   = {Universidad Pontificia Comillas. Repositorio Institucional},
+  year      = {2020},
+  url       = {https://repositorio.comillas.edu/xmlui/handle/11531/18095},
+  note      = {Comparación entre el método D'Hondt y una propuesta alternativa basada en cociente Hare. Contiene simulaciones para comparar proporcionalidad y efectos en la representación.}
+}
+
+@article{carrasco2001matematicas,
+  author    = {Carrasco, José Luis},
+  title     = {Matemáticas electorales: desproporcionalidad y alianzas},
+  journal   = {Uno: Revista de Didáctica de las Matemáticas},
+  number    = {28},
+  year      = {2001},
+  pages     = {51--60},
+  url       = {https://redined.educacion.gob.es/xmlui/handle/11162/13407},
+  note      = {Estudio aplicado sobre elecciones autonómicas catalanas de 1999. Usa escenarios hipotéticos que simulan distintos resultados bajo el método D'Hondt para evidenciar su desproporcionalidad.}
+}
+
+@article{kirchgaessner2011apparentments,
+  author  = {Kirchgaessner, Gebhard and Schimmelpfennig, Axel},
+  title   = {Who gains from apparentments under D’Hondt?},
+  journal = {Electoral Studies},
+  volume  = {30},
+  number  = {1},
+  pages   = {130--136},
+  year    = {2011},
+  doi     = {10.1016/j.electstud.2010.09.001},
+  url     = {https://www.sciencedirect.com/science/article/abs/pii/S0261379410000600},
+  note    = {
+    Estudia mediante simulaciones cómo las coaliciones entre listas (apparentments)
+    afectan el reparto de escaños bajo D'Hondt.
+    Concluye que los partidos grandes se benefician más.
+  }
+}
+
+@article{cooper2001strategic,
+  author  = {Cooper, Christopher A.},
+  title   = {Strategic Voting in Plurality Elections: A Simulation of Duverger's Law},
+  journal = {PS: Political Science and Politics},
+  volume  = {34},
+  number  = {1},
+  pages   = {27--32},
+  year    = {2001},
+  doi     = {10.1017/S1049096501000072},
+  url     = {https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/abs/strategic-voting-in-plurality-elections-a-simulation-of-duvergers-law/D06DBAA5832E36DC403BA55FAD88A812},
+  note    = {Aunque centrado en sistemas mayoritarios, ilustra con simulaciones cómo el comportamiento estratégico de los votantes puede distorsionar la representación, relevante para analizar D'Hondt.}
+}
+
+@article{vallejo2012dhondt,
+  author  = {Vallejo, Pedro and Rivadeneira, Fabián and Lascano, Ana Lucía},
+  title   = {Análisis matemático al Método D'Hondt de asignación de escaños parlamentarios},
+  journal = {Ingenius. Revista de Ciencia y Tecnología},
+  number  = {8},
+  year    = {2012},
+  pages   = {52--59},
+  url     = {https://revistas.ups.edu.ec/index.php/ingenius/article/view/8.2012.04},
+  note    = {Enfoque matemático sobre el método D’Hondt, útil como base teórica para simulaciones.}
+}
+
+@article{pukelsheim2014rethinking,
+  author  = {Pukelsheim, Friedrich},
+  title   = {Rethinking the D’Hondt method},
+  journal = {Mathematical Social Sciences},
+  volume  = {67},
+  pages   = {3--11},
+  year    = {2014},
+  doi     = {10.1016/j.mathsocsci.2013.11.001},
+  url     = {https://tandf.figshare.com/articles/journal_contribution/Rethinking_the_D_Hondt_method/9109424},
+  note    = {
+    Este artículo presenta una generalización del método D'Hondt utilizando un modelo de mezcla finita. 
+    Se demuestra que este modelo maximiza la fracción de votos representados proporcionalmente y se proporcionan medidas intuitivas de la desproporcionalidad general y a nivel de partido.
+    La abstracción se logra al modelar el reparto de escaños como una función matemática que transforma un vector de votos en un vector de escaños, utilizando conceptos como proporción ideal (cuota), funciones de redondeo y desviación mínima, sin necesidad de recurrir a datos empíricos específicos.
+  }
+}
+
+@article{flis2019formal,
+  author  = {Flis, Jarosław and Wolek, Marcin},
+  title   = {A Formal Model of the Relationship between the Number of Parties and the District Magnitude},
+  journal = {arXiv preprint arXiv:1909.12036},
+  year    = {2019},
+  url     = {https://arxiv.org/abs/1909.12036},
+  note    = {
+    Este estudio propone un modelo formal que describe la relación entre el número de partidos y la magnitud del distrito bajo el sistema Jefferson-D'Hondt.
+    Utiliza un modelo probabilístico basado en el modelo de urna de Pólya y lo valida con datos electorales de varios países, incluyendo elecciones locales polacas.
+    La abstracción se logra al utilizar distribuciones de probabilidad que representan 'escenarios típicos', eliminando la necesidad de usar partidos reales ni votaciones específicas.
+  }
+}
+
+@article{laslier2012spatial,
+  author  = {Laslier, Jean-François and Sanver, M. Remzi},
+  title   = {On the performance of voting systems in spatial voting simulations},
+  journal = {Journal of Economic Theory},
+  volume  = {147},
+  number  = {6},
+  pages   = {2155--2174},
+  year    = {2012},
+  doi     = {10.1016/j.jet.2012.04.007},
+  url     = {https://link.springer.com/article/10.1007/s11403-011-0082-1},
+  note    = {
+    Este artículo simula el rendimiento de diversos sistemas de votación, incluido D'Hondt, en un espacio de votación unidimensional con votantes ideológicos.
+    Se evalúa la capacidad de cada sistema para minimizar la disutilidad social agregada, proporcionando una perspectiva sobre la eficiencia de D'Hondt en contextos espaciales.
+    La abstracción se logra al modelar el comportamiento de los votantes como jugadores racionales que maximizan su utilidad, sin necesidad de recurrir a datos empíricos específicos.
+  }
+}
+
+@article{dhondt1878,
+  author    = {Victor D'Hondt},
+  title     = {Le Système de représentation proportionnelle},
+  journal   = {Bulletin of the Belgian Society of Sciences},
+  year      = {1878},
+  note      = {
+    El artículo original en el que Victor D'Hondt presenta su método
+    de asignación proporcional de escaños. Publicado en 1878, fue la base
+    de lo que luego sería conocido como el "método D'Hondt". Se encuentra
+    en francés y es difícil de acceder a través de medios modernos.
+  }
+}
+
+@book{sartori2005,
+  author    = {Giovanni Sartori},
+  title     = {Comparative Constitutional Engineering: An Inquiry into Structures, Incentives and Outcomes},
+  year      = {2005},
+  publisher = {Macmillan},
+  note      = {
+    Este libro es uno de los más citados en el campo de los sistemas
+    electorales. Sartori explica cómo el sistema D'Hondt se utiliza en
+    diferentes contextos políticos. Es una de las referencias más
+    completas para comprender los sistemas electorales proporcionales.
+  },
+  url = {https://www.abebooks.co.uk/9780814780633/Comparative-Constitutional-Engineering-Second-Edition-0814780636/plp}
+}
+
+@book{nohlen2004,
+  author    = {Dietrich Nohlen},
+  title     = {Elections: A Comparative Introduction},
+  year      = {2004},
+  publisher = {Oxford University Press},
+  note      = {
+    Este texto académico proporciona una comparación detallada entre
+    sistemas electorales, incluyendo el método D'Hondt. El libro es
+    accesible y se utiliza ampliamente en estudios de ciencias políticas
+    para enseñar sobre sistemas de votación proporcionales.
+  },
+  url       = {https://global.oup.com}
+}
+
+@book{lijphart1994,
+  author    = {Arend Lijphart},
+  title     = {Electoral Systems and Party Systems: A Study of 27 Democracies, 1945-1990},
+  year      = {1994},
+  publisher = {Oxford University Press},
+  note      = {
+    Lijphart realiza un análisis comparativo de sistemas electorales en
+    27 democracias, y dedica una sección a los sistemas proporcionales
+    como el D'Hondt. Es una referencia crucial en el campo de las
+    ciencias políticas y la teoría de sistemas electorales.
+  },
+  url       = {https://global.oup.com}
+}
+
+@article{medzihorsky2019rethinking,
+ title = {Rethinking the D'Hondt method},
+ author = {Medzihorsky, Juraj},
+ journal = {Political Research Exchange},
+ volume = {1},
+ number = {1},
+ pages = {1--17},
+ year = {2019},
+ doi = {10.1080/2474736X.2019.1625712},
+ url = {https://doi.org/10.1080/2474736X.2019.1625712},
+ note = {
+   La crítica se centra en cómo el método D'Hondt,
+   al maximizar la proporción de votos representados proporcionalmente,
+   puede favorecer a los partidos más grandes
+   y distorsionar la representación proporcional.
+ }
+}
+
+@article{lardeyret1991problem,
+ title = {Debate—Proportional Representation: The Problem with PR},
+ author = {Lardeyret, Guy},
+ journal = {Journal of Democracy},
+ volume = {2},
+ number = {3},
+ pages = {30--35},
+ year = {1991},
+ url = {
+   https://www.journalofdemocracy.org/articles/
+   debate-proportional-representation-the-problem-with-pr/
+ },
+ note = {
+   Lardeyret argumenta que la representación proporcional
+   puede conducir a gobiernos inestables y coaliciones fragmentadas,
+   lo que podría ser perjudicial para la gobernabilidad.
+ }
+}
+
+@article{wilder1999explaining,
+ title = {Party list proportional representation: Explaining d'Hondt},
+ author = {Wilder, Paul},
+ journal = {Representation},
+ volume = {36},
+ number = {3},
+ pages = {232--234},
+ year = {1999},
+ doi = {10.1080/00344899908523087},
+ url = {https://doi.org/10.1080/00344899908523087},
+ note = {
+   Este artículo explica cómo el método D'Hondt
+   puede favorecer a los partidos más grandes,
+   incluso en sistemas de representación proporcional.
+ }
+}
+
+@article{bochsler2010gains,
+ title = {Who gains from apparentments under D’Hondt?},
+ author = {Bochsler, Daniel},
+ journal = {Electoral Studies},
+ volume = {29},
+ number = {4},
+ pages = {617--627},
+ year = {2010},
+ doi = {10.1016/j.electstud.2010.06.001},
+ url = {https://doi.org/10.1016/j.electstud.2010.06.001},
+ note = {
+   El estudio muestra que los partidos grandes
+   se benefician más de los "apparentments" bajo el sistema D'Hondt,
+   lo que puede aumentar la desigualdad en la representación.
+ }
+}
+
+@article{schroeder2019understanding,
+ title = {
+   Understanding the d'Hondt method:
+   Allocation of parliamentary seats and leadership positions
+ },
+ author = {Schr{\"o}der, Philipp},
+ journal = {Policy Commons},
+ year = {2019},
+ url = {
+   https://policycommons.net/artifacts/1334868/
+   understanding-the-dhondt-method/1940716/
+ },
+ note = {
+   Este informe analiza cómo el método D'Hondt
+   tiende a favorecer a los partidos más grandes,
+   incluso en sistemas de representación proporcional.
+ }
+}
+
+@article{blais2001effects,
+  author = {Blais, André and Carty, R. Kenneth},
+  title = {The effects of electoral systems: A retrospective analysis},
+  year = {2001},
+  journal = {Canadian Journal of Political Science/Revue canadienne de science politique},
+  volume = {34},
+  number = {4},
+  pages = {681--695},
+  url = {https://www.jstor.org/stable/3231639},
+  note = {
+    Analiza cómo los sistemas electorales impactan el comportamiento 
+    de los votantes y la representación política. 
+    Concluyen que el sistema D'Hondt favorece a los partidos mayoritarios, 
+    reduciendo la eficiencia del voto para los partidos minoritarios.
+  },
+}
+
+@article{gallagher2005electoral,
+  author = {Gallagher, Michael},
+  title = {Electoral systems and the effective number of parties},
+  year = {2005},
+  journal = {Comparative Political Studies},
+  volume = {38},
+  number = {7},
+  pages = {825--855},
+  url = {https://journals.sagepub.com/doi/abs/10.1177/0010414005276897},
+  note = {
+    Discute cómo los sistemas electorales afectan el número efectivo de partidos 
+    en un sistema. Resalta cómo el sistema D'Hondt puede favorecer a los partidos 
+    mayoritarios, disminuyendo la efectividad del voto de los partidos minoritarios 
+    en ciertos contextos.
+  },
+}
+
+@book{sartori2005parties,
+  author = {Sartori, Giovanni},
+  title = {Parties and Party Systems: A Framework for Analysis},
+  year = {2005},
+  publisher = {Cambridge University Press},
+  note = {
+    Análisis exhaustivo sobre los partidos políticos y los sistemas electorales. 
+    El sistema D'Hondt favorece a los partidos grandes, disminuyendo la representación 
+    de las minorías. Este análisis es fundamental para entender cómo los sistemas 
+    mayoritarios afectan la pluralidad política.
+  },
+}
+
+@article{medzihorsky2019rethinking,
+  author = {Medzihorsky, Juraj},
+  title = {Rethinking the D’Hondt method},
+  year = {2019},
+  journal = {Political Research Exchange},
+  volume = {1},
+  number = {1},
+  pages = {1-17},
+  doi = {10.1080/2474736X.2019.1625712},
+  url = {https://www.tandfonline.com/doi/full/10.1080/2474736X.2019.1625712},
+  note = {
+    BUENO!
+    Revisa el método D'Hondt y su impacto sobre la representación de los partidos 
+    en sistemas electorales. Cuestiona si la concentración del voto en partidos 
+    grandes realmente tiene los efectos predichos por la teoría.
+  },
+}
+
+@book{lijphart1999patterns,
+  author = {Lijphart, Arend},
+  title = {Patterns of Democracy: Government Forms and Performance in Thirty-Six Countries},
+  year = {1999},
+  publisher = {Yale University Press},
+  note = {
+    Critica a D'hondt porque perjudica la pluralidad asumiendoe que beneficia a los grandes.
+    Ofrece un análisis comparativo de diferentes sistemas democráticos. 
+    Aunque el sistema D'Hondt favorece a los partidos grandes, el autor sostiene 
+    que en algunos casos los sistemas mayoritarios pueden perjudicar la pluralidad política.
+  },
+}
+
+@article{sutherland2003,
+  author = {Sutherland, S.},
+  title = {Electoral systems and the representation of minorities},
+  year = {2003},
+  journal = {Political Studies},
+  volume = {51},
+  number = {3},
+  pages = {485-503},
+  doi = {10.1111/1467-9248.00342},
+  note = {
+    Citado por Medzihorsky como ejemplo de suponer que favorecen a los mayoritarios.
+    Discute cómo los sistemas de representación proporcional, como D'Hondt, favorecen 
+    a los partidos mayoritarios en términos de representación de escaños.
+  }
+}
+
+@book{norris1997,
+  author = {Norris, P.},
+  title = {Electoral Engineering: Voting Rules and Political Behavior},
+  year = {1997},
+  publisher = {Cambridge University Press},
+  address = {Cambridge},
+  note = {
+    Citado por Medzihorsky como ejemplo de suponer que favorecen a los mayoritarios.
+    Analiza cómo los sistemas electorales, como el D'Hondt, tienden a favorecer a los 
+    partidos mayoritarios, y cómo la concentración del voto puede ser más eficiente para ellos.
+  }
+}
+
+
+
+
