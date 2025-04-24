@@ -1,6 +1,7 @@
 import colour
 import cairosvg
 
+
 def spnum(n):
     return f"{n:,}".translate(str.maketrans({',':'.', '.':','}))
 
@@ -18,7 +19,7 @@ def darken(color, factor=0.83):
 
 
 def draw_text(
-    x, y, text, horizontal_alignment="left", vertical_alignment="bottom", font_size=14
+    x, y, text, horizontal_alignment="left", vertical_alignment="bottom", font_size=14, color="black",
 ):
     """
     Draws an SVG <text> element anchored at the given point using intuitive alignment terms.
@@ -31,7 +32,7 @@ def draw_text(
     dominant_baseline = vertical_map[vertical_alignment]
 
     return f"""
-<text x="{x}" y="{y}" text-anchor="{text_anchor}" dominant-baseline="{dominant_baseline}" font-size="{font_size}" font-family="sans-serif">
+<text x="{x}" y="{y}" text-anchor="{text_anchor}" dominant-baseline="{dominant_baseline}" font-size="{font_size}" font-family="sans-serif" fill="{color}">
   {text}
 </text>
     """
@@ -105,11 +106,8 @@ def generate_seat_bar(
     legend_y = bar_y + bar_height + 30
     votes_x = margin + seat_width * seats + remainder_width
     cut_x = margin + seat_width
-    next_seat_x = margin + seat_width * (seats + 1)
 
-    svg = f"""<?xml version="1.0" encoding="UTF-8"?>
-<svg width="{svg_width}" height="{svg_height}" xmlns="http://www.w3.org/2000/svg">
-"""
+    svg = ""
     # border (debug)
     #svg += draw_bar_segment(0, 0, svg_width, svg_height, "beige", 10)
 
@@ -183,7 +181,16 @@ def generate_seat_bar(
     #svg += draw_legend(legend_items, svg_width/2, legend_y, font_size, border_color)
     svg += draw_text(margin, bar_y + bar_height + 20 , f"Escaños ({spnum(seats)})", "left", "top")
 
-    svg += "</svg>"
+    dump_image(svg, output_basename, svg_width, svg_height)
+
+
+def dump_image(content, output_basename, width, height):
+    svg = (
+        f'<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">\n'
+        + content +
+        "</svg>"
+    )
 
     svg_file = f"{output_basename}.svg"
     pdf_file = f"{output_basename}.pdf"
@@ -200,5 +207,55 @@ def generate_seat_bar(
     print(f" - {png_file}")
 
 
+def generate_seat_cost(
+    seats=5,
+    output_basename="seat-cost",
+):
+    seat_color = "#4F81BD"
+    first_seat_color = darken(seat_color)
+    missing_color = "transparent"
+    border_color = "#000000"
+
+    margin = 20
+    bar_height = 40
+    bar_width = 600
+    bar_gap = 10
+    svg_width = margin + bar_width + margin
+    svg_height = margin + seats * (bar_height + bar_gap) + margin
+    stroke_width = 2
+    font_size = 14
+    seat_width = bar_width / (seats + 1)
+    bar_y = margin
+
+    svg = ""
+    # border (debug)
+    #svg += draw_bar_segment(0, 0, svg_width, svg_height, "beige", 10)
+    for i in range(seats):
+        price = bar_width/(i+1)
+        for j in range(i+1):
+            svg += draw_bar_segment(
+                margin + j * price,
+                bar_y + i * (bar_height+bar_gap),
+                price,
+                bar_height,
+                seat_color,
+            )
+        svg += draw_bar_segment(
+            margin,
+            bar_y + i * (bar_height+bar_gap),
+            price,
+            bar_height,
+            first_seat_color,
+        )
+        svg += draw_text(
+            margin + price /2,
+            bar_y + i * (bar_height+bar_gap) + bar_height/2,
+            f"Vi / {i+1}",
+            "center", "center",
+            color="white"
+        )
+    dump_image(svg, "seat-costs", svg_width, svg_height)
+
 if __name__ == "__main__":
     generate_seat_bar()
+    generate_seat_cost()

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640" height="290" xmlns="http://www.w3.org/2000/svg">
+<rect x="20.0" y="20" width="600.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="20" y="20" width="600.0" height="40" fill="#325886" stroke="#223d5c" stroke-width="4" />
+<text x="320.0" y="40.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-family="sans-serif" fill="white">
+  Vi / 1
+</text>
+    <rect x="20.0" y="70" width="300.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="320.0" y="70" width="300.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="20" y="70" width="300.0" height="40" fill="#325886" stroke="#223d5c" stroke-width="4" />
+<text x="170.0" y="90.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-family="sans-serif" fill="white">
+  Vi / 2
+</text>
+    <rect x="20.0" y="120" width="200.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="220.0" y="120" width="200.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="420.0" y="120" width="200.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="20" y="120" width="200.0" height="40" fill="#325886" stroke="#223d5c" stroke-width="4" />
+<text x="120.0" y="140.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-family="sans-serif" fill="white">
+  Vi / 3
+</text>
+    <rect x="20.0" y="170" width="150.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="170.0" y="170" width="150.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="320.0" y="170" width="150.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="470.0" y="170" width="150.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="20" y="170" width="150.0" height="40" fill="#325886" stroke="#223d5c" stroke-width="4" />
+<text x="95.0" y="190.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-family="sans-serif" fill="white">
+  Vi / 4
+</text>
+    <rect x="20.0" y="220" width="120.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="140.0" y="220" width="120.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="260.0" y="220" width="120.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="380.0" y="220" width="120.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="500.0" y="220" width="120.0" height="40" fill="#4F81BD" stroke="#325886" stroke-width="4" /><rect x="20" y="220" width="120.0" height="40" fill="#325886" stroke="#223d5c" stroke-width="4" />
+<text x="80.0" y="240.0" text-anchor="middle" dominant-baseline="middle" font-size="14" font-family="sans-serif" fill="white">
+  Vi / 5
+</text>
+    </svg>
