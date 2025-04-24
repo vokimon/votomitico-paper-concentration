@@ -34,6 +34,9 @@ El sistema de representación proporcional de D’Hondt [@dhondt1878; @sartori20
 también conocido como _reparto por cocientes decrecientes_,
 se emplea habitualmente en España para asignar escaños
 en elecciones generales, autonómicas, europeas y municipales [@congreso1985loreg].
+El reparto se realiza independientemente dentro de cada circunscripción electoral,
+transformando los votos obtenidos por cada candidatura en escaños,
+según un orden determinado por sus cocientes de reparto.
 
 Este artículo no busca evaluar la idoneidad del sistema
 ni proponer alternativas, como ya hacen otros autores
@@ -41,7 +44,7 @@ ni proponer alternativas, como ya hacen otros autores
 sino ofrecer herramientas para **comprender su lógica interna**,
 y, de este modo, evaluar cómo distintas decisiones
 afectan al reparto de escaños.
-Estas herramientas son útiles tanto para el diseño de campañas,
+Estas herramientas pueden ser útiles tanto para el diseño de campañas,
 como para el análisis post-electoral,
 pero especialmente para guiar decisiones de **voto estratégico**
 [@wilder1999explaining; @schroeder2019understanding],
@@ -53,47 +56,9 @@ Este articulo en concreto se centra,
 en el **dilema de la concentración del voto en los mayoritarios**,
 dentro de un contexto de **lógica de bloques**.
 aunque el marco teórico que se establece
-tendría utilidad en otros dilemas y contextos
+tendría aplicación en otros dilemas y contextos
 donde las mecánicas del sistema D'Hondt tengan influencia.
 
-### Lógica de bloques
-
-El contexto de nuestro análisis parte de una **lógica de bloques**,
-donde agrupamos las candidaturas en dos conjuntos antagónicos,
-con el objetivo de maximizar los escaños obtenidos
-por uno de los bloques en su conjunto.
-
-Este enfoque no responde tanto a una realidad formal del sistema electoral,
-que no reconoce alianzas preelectorales a efectos de reparto,
-sino a una realidad política común:
-la existencia de proyectos de gobierno compartido
-que dependen del resultado agregado del bloque.
-
-Dentro de este contexto, emergen distintos dilemas estratégicos:
-cómo distribuir el voto entre las candidaturas del bloque,
-cuándo explorar pactos preelectorales, y
-qué impacto tienen los trasvases internos sobre el resultado final.
-
-### El dilema de la concentración del voto
-
-En este artículo nos centramos en un dilema muy concreto
-y ampliamente asumido por el electorado:
-la idea de que, ante la ausencia de alianzas formales,
-es **más eficaz concentrar el voto en la candidatura más fuerte del bloque**.
-
-Esta creencia está muy extendida
-y a menudo se apoya en ejemplos históricos o intuiciones sobre el sistema D’Hondt,
-pero rara vez se fundamenta en un análisis estructurado del reparto.
-
-Nuestro objetivo es cuestionar esta suposición,
-ofreciendo un marco que permita **explorar cuándo esta estrategia es ventajosa**
-y cuándo puede ser, en cambio, **contraproducente**.
-
-A lo largo del artículo mostraremos que la respuesta
-depende de múltiples factores,
-entre ellos el número total de escaños,
-la distribución de votos entre bloques y
-la relación de fuerzas dentro del bloque minoritario.
 
 ### Lógica de bloque
 
@@ -110,10 +75,10 @@ como los ejes progresismo-conservadurismo,
 capitalismo-socialismo o independentismo-unionismo.
 
 Paradójicamente, esta coincidencia ideológica
-les hace competir por **bases electorales compartidas**,
+hace competir a las candidaturas por **bases electorales compartidas**,
 y estimula, especialmente en períodos electorales,
-la **lógica partidista**, que prioriza la captación de poder
-por parte de cada candidatura en concreto.
+la **lógica partidista**, que prioriza la captación de poder electoral
+por parte de cada candidatura por separado.
 
 Más paradójico aún es que, desde una **lógica partidista**,
 algunas candidaturas apelen a la **lógica de bloques**
@@ -123,13 +88,20 @@ a otras opciones dentro del mismo bloque.
 
 En contextos de **lógica de bloques**,
 emergen diversos dilemas estratégicos.
-Uno interesante es si conviene explorar pactos preelectorales
-para maximizar el impacto del bloque.
-Otro dilema, en el que nos centramos en este artículo,
+El dilema en el que nos centramos en este artículo,
 es si la **concentración del voto** en las candidaturas más fuertes
 beneficia al bloque en su conjunto.
 
-## El dilema de la concentración
+Cabe diferenciarlo de otro dilema similar,
+igualmente interesante, pero que no abordaremos en este artículo,
+que es la conveniencia de los **pactos preelectorales**
+para maximizar el impacto del bloque.
+El de la concentración del voto es un dilema que,
+principalmente, afronta el electorado en el momento de votar.
+El segundo, lo afrontan las candidaturas
+antes de entrar en la contienda electoral.
+
+### El dilema de la concentración
 
 En contextos de lógica de bloques, es un fenómeno recurrente
 apelar al **voto estratégico** o **voto útil**,
@@ -154,30 +126,41 @@ por parte de políticos de color diverso incluyen:
 - Catalanas 2024: Puigdemont (Junts) [@puigdemont2024catalanas]
 - Catalanas 2024: Illa (PSC) [@illa2024catalunya]
 
-Si bien sería muy ingenuo exigir rigor de los políticos en campaña,
+Si bien sería muy ingenuo exigir rigor científico a los políticos en campaña,
 el argumento está profundamente interiorizado en la sociedad.
-Periodistas y analistas lo incorporan en sus análisis y divulgaciones
+Periodistas y analistas lo incorporan en sus análisis y divulgaciones,
 lo que contribuye a su perpetuación [@tezanos_2019; @lavanguardia2023grandes; @elmundo2023calculo].
 
 Cabe reconocer que algunos artículos han empezado a cuestionar este supuesto
 [@eldiario_2023; @confidencial_2023; @infolibre_2023].
 Matizan la idoneidad de su aplicación en algunos casos,
-o justifican que no siempre sigue un comportamiento lineal.
+o justifican la divergencia inexperada
+con el hecho de que el sistema no siempre
+sigue un comportamiento lineal.
 
 Durante mucho tiempo, en la literatura científica,
-también se ha dado por supuesto que D'Hondt favorecia a los mayoritarios
+también se ha dado por supuesto que D'Hondt favorecía a los mayoritarios
 [@norris1997; @sutherland2003].
 Pero, recientemente, [@medzihorsky2019rethinking]
 pone en cuestión, con argumentos analíticos y empíricos,
 que D'Hondt genere un beneficio desproporcionado a los grandes.
 
-Tambien existen evidencias en casos recientes en España,
-donde una concentración de voto en el mayor
+También existen evidencias en casos recientes en España,
+donde una concentración de voto en el mayoritario
 no solo no ha tenido el efecto esperado,
-sinó que ha sido contraproducente para el bloque[^1].
+sino que ha sido contraproducente para el bloque[^1].
 
-A la luz de estos precedentes, se ha evidenciado la necesidad  
+A la luz de estos precedentes, se ha evidenciado la necesidad
 de realizar un análisis más sistemático sobre este asunto.
+
+Normalmente el supuesto beneficio
+de concentrar el voto en la candidatura mayor,
+se basa en que se sabe que el sistema electoral
+beneficia a las candidaturas grandes.
+En este artículo se pone en duda
+que el sistema electoral otorgue tal beneficio,
+sinó que se examina si tal beneficio puede ser explotable
+para que el voto personal sea más poderoso.
 
 [^1]: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
     Muchos votantes de ZURDOS respondieron al llamamiento de PROGRES
@@ -189,20 +172,13 @@ de realizar un análisis más sistemático sobre este asunto.
     a PROGRES se hubieran mantenido en ZURDOS.
 
 
-
-## Metodologia de análisis
-
-
-
 ### Una perspectiva habilitadora del sistema D'Hondt
 
-El sistema de representación proporcional de D’Hondt [@dhondt1878; @sartori2005],
+Como decíamos en la introducción,
+el sistema d’Hondt [@dhondt1878; @sartori2005],
 también conocido como _reparto por cocientes decrecientes_,
 se emplea habitualmente en España para asignar escaños
 en elecciones generales, autonómicas, europeas y municipales [@congreso1985loreg].
-El reparto se realiza independientemente dentro de cada circunscripción electoral,
-transformando los votos obtenidos por cada candidatura en escaños,
-según un orden determinado por sus cocientes de reparto.
 
 El uso habitual del sistema D'Hondt es procedural:
 Se aplica un algoritmo y se obtiene el reparto de escaños.
@@ -232,23 +208,6 @@ Este precio, aunque no esté determinado, permite establecer relaciones
 entre los demás elementos que intervienen en el reparto,
 ignorando las complejidades del algoritmo,
 lo cual se desarrollará más adelante.
-
-
-
-### Transferencias entre partidos
-
-Formalizamos el problema:
-Dada una **situación de referencia**,
-un reparto de votos inicial,
-**¿en qué sentido y magnitud se alteraría el resultado conjunto de dos formaciones,
-si hay una transferencia de N votos de una a la otra?**
-
-Como la situación de referencia es desconocida,
-pero hasta cierto punto estimable,
-necesitaremos hacer estimaciones probabilísticas del resultado,
-con parámetros que podamos ajustar a posteriori a situaciones reales.
-
-## Metodología
 
 
 
