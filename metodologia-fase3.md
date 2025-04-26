@@ -34,5 +34,4 @@
 - Ninguna estrategia es universalmente mejor sin contexto.
 - El análisis geométrico aporta una nueva herramienta para comprender dinámicas electorales.
 
-# Referencias {.unnumbered }
 
