@@ -3,8 +3,10 @@ lang: es
 author: David García Garzón
 # {.unnumbered}
 title: Efectos electorales de trasvases de voto entre partidos con base electoral común
-numbersections: true
 classoption:
+numbersections: true
+link-citations: true
+link-bibliography: true
 #- twocolumn
 bibliography:
 - bibliography.bib
@@ -48,5 +50,12 @@ abstract: |
 
 # Referencias {.unnumbered }
 
+::: {#refs}
+:::
+
+\newpage
+\thispagestyle{empty}
+
+!include todo.md
 
 
