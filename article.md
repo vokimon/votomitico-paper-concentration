@@ -1,34 +1,40 @@
 ---
 lang: es
+author: David García Garzón
+# {.unnumbered}
+title: Efectos electorales de trasvases de voto entre partidos con base electoral común
+numbersections: true
+classoption:
+#- twocolumn
 bibliography:
 - bibliography.bib
 - bibliography-vote-concentration-calls.bib
 - bibliography-divulgacion-bulo.bib
+- bibliography-juegos-sistemas.bib
+abstract: |
+    Una idea ampliamente extendida
+    sobre el sistema de representación proporcional de D'Hondt,
+    es que trasvasar votos de un partido pequeño a uno grande
+    aumenta la representación conjunta del bloque,
+    bajo la suposición de que este sistema
+    permite a los partidos más grandes
+    traducir los votos en escaños con mayor eficiencia.
+    Nuestro análisis descarta categóricamente este supuesto,
+    mostrando que los efectos de dichos trasvases
+    se limitan a una diferencia de un escaño por circunscripción,
+    que puede ser positiva o negativa con la misma probabilidad,
+    y que es independiente de la dirección del trasvase.
+    En resumen, en condiciones normales de cierta incertidumbre
+    sobre los resultados exactos de la votación,
+    la concentración del voto no produce ningún tipo de mejora
+    de los resultados conjuntos.
+    También se estudian, por su importancia y ocurrencia,
+    ciertos casos especiales en que la incertidumbre es menor
+    y los supuestos del caso general no aplican.
+
 ---
 
-# Efectos electorales de trasvases de voto entre partidos con base electoral común
-
-Sobre el sistema de representación proporcional de D'Hondt,
-existe una intuición ampliamente difundida que sostiene que
-trasvasar votos de un partido pequeño a uno grande
-aumenta la representación conjunta del bloque,
-bajo la suposición de que este sistema
-permite a los partidos más grandes
-traducir los votos en escaños con mayor eficiencia.
-Nuestro análisis descarta categóricamente este supuesto,
-mostrando que los efectos de dichos trasvases
-se limitan a una diferencia de un escaño por circunscripción,
-que puede ser positiva o negativa con la misma probabilidad,
-y que es independiente de la dirección del trasvase.
-En resumen, en condiciones normales de cierta incertidumbre
-sobre los resultados exactos de la votación,
-la concentración del voto no produce ningún tipo de mejora
-de los resultados conjuntos.
-También se estudian, por su importancia y ocurrencia,
-ciertos casos especiales en que la incertidumbre es menor
-y los supuestos del caso general no aplican.
-
-## Introducción
+# Introducción
 
 El sistema de representación proporcional de D’Hondt [@dhondt1878; @sartori2005],
 también conocido como _reparto por cocientes decrecientes_,
@@ -60,7 +66,7 @@ tendría aplicación en otros dilemas y contextos
 donde las mecánicas del sistema D'Hondt tengan influencia.
 
 
-### Lógica de bloque
+## Lógica de bloque
 
 Decimos que un perfil del electorado opera según una **lógica de bloque**
 cuando éste pecibe que,
@@ -101,15 +107,15 @@ principalmente, afronta el electorado en el momento de votar.
 El segundo, lo afrontan las candidaturas
 antes de entrar en la contienda electoral.
 
-### El dilema de la concentración
+## El dilema de la concentración
 
 En contextos de lógica de bloques, es un fenómeno recurrente
 apelar al **voto estratégico** o **voto útil**,
 buscando la **concentración del voto**
 hacia la formación mayoritaria de un bloque.
-Esto se hace bajo la suposición de que los partidos grandes
-son más eficientes a la hora de convertir votos en escaños,
-dado que el sistema D'Hondt tiende a favorecerles.
+El supuesto detrás de esta idea es que los partidos grandes,
+como el sistema electoral les favorece,
+transforman más eficientemente los votos en escaños.
 
 Algunos ejemplos recientes de este tipo de llamamientos
 por parte de políticos de color diverso incluyen:
@@ -145,21 +151,17 @@ Pero, recientemente, [@medzihorsky2019rethinking]
 pone en cuestión, con argumentos analíticos y empíricos,
 que D'Hondt genere un beneficio desproporcionado a los grandes.
 
-También existen evidencias en casos recientes en España,
-donde una concentración de voto en el mayoritario
+A esto, se suman casos recientes en diversas convocatorias en España,
+donde un trasvase de voto hacia el mayoritario,
 no solo no ha tenido el efecto esperado,
-sino que ha sido contraproducente para el bloque[^1].
+sino que han resultado en un peor resultado para el bloque en conjunto[^1].
 
-A la luz de estos precedentes, se ha evidenciado la necesidad
+A la luz de estos precedentes, se evidencia la necesidad
 de realizar un análisis más sistemático sobre este asunto.
 
-Normalmente el supuesto beneficio
-de concentrar el voto en la candidatura mayor,
-se basa en que se sabe que el sistema electoral
-beneficia a las candidaturas grandes.
-En este artículo se pone en duda
-que el sistema electoral otorgue tal beneficio,
-sinó que se examina si tal beneficio puede ser explotable
+Este artículo no pone en duda que el sistema electoral en conjunto
+beneficie a los mayoritario, es así,
+lo que que se examina es si tal beneficio puede ser explotable
 para que el voto personal sea más poderoso.
 
 [^1]: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
@@ -172,13 +174,7 @@ para que el voto personal sea más poderoso.
     a PROGRES se hubieran mantenido en ZURDOS.
 
 
-### Una perspectiva habilitadora del sistema D'Hondt
-
-Como decíamos en la introducción,
-el sistema d’Hondt [@dhondt1878; @sartori2005],
-también conocido como _reparto por cocientes decrecientes_,
-se emplea habitualmente en España para asignar escaños
-en elecciones generales, autonómicas, europeas y municipales [@congreso1985loreg].
+## Una perspectiva habilitadora del sistema D'Hondt
 
 El uso habitual del sistema D'Hondt es procedural:
 Se aplica un algoritmo y se obtiene el reparto de escaños.
