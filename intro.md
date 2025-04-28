@@ -124,8 +124,9 @@ A la luz de estos precedentes, se evidencia la necesidad
 de realizar un análisis más sistemático sobre este asunto.
 
 Este artículo no pone en duda que el sistema electoral en conjunto
-beneficie a los mayoritario, es así,
-lo que que se examina es si tal beneficio puede ser explotable
+beneficie a los mayoritarios.
+Es así.
+Lo que que se examina es si tal beneficio puede ser explotable
 para que el voto personal sea más poderoso.
 
 [^1]: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.

@@ -44,9 +44,28 @@ abstract: |
 
 !include algebra-dhondt.md
 
-!include metodologia-fase2.md
+!include modelo-aproximado.md
 
-!include metodologia-fase3.md
+!include modelo-general.md
+
+# Condiciones que habilitan el voto estratégico
+
+- Certidumbre en los restos como factor
+- Partidos muy pequeños
+- Pocos escaños a repartir
+- Muchos escaños a repartir con umbral electoral
+
+# Causas de la difusión del mito
+
+- Elementos del sistema electoral que perjudican los minoritarios
+    - Umbral electoral -> solo aplica en pocas circunscripciones en autonómicas
+    - Escasez de escaños
+    - Multiples circunscripciones
+    - Reparto de D'Hondt
+
+- Percepción relativa de los restos
+
+# Conclusiones
 
 # Referencias {.unnumbered }
 
@@ -57,5 +76,7 @@ abstract: |
 \thispagestyle{empty}
 
 !include todo.md
+
+!include article-outlines.md
 
 

@@ -18,13 +18,13 @@ y bajo qué condiciones era más pronunciado.
 ## Hipótesis Inicial
 
 
-Suponíamos que,  
+Suponíamos que,
 a medida que aumentase la concentración
 de votos en el partido mayoritario de un bloque,
 los escaños conjuntos aumentarían.
 No poníamos en duda esta relación,
 que es una creencia extendida,
-sino que queríamos explorar cómo se manifestaba en la práctica,  
+sino que queríamos explorar cómo se manifestaba en la práctica,
 observando el comportamiento del sistema frente a trasvases de votos.
 
 
@@ -73,6 +73,7 @@ ya que los resultados no siguieron este patrón esperado.
 El simulador, que incluye los datos históricos y sintéticos,  
 está disponible en votomitico.org.El simulador, que incluye los datos históricos y sintéticos,  
 está disponible en votomitico.org.
+
 ## Patrones Observados
 
 Según el escenario, se detectaron dos patrones diferenciados durante las simulaciones:

@@ -1,11 +1,17 @@
 # Marco algebraico para D'Hondt
 
-Para facilitar el tratamiento algebraico del sistema D'Hondt
-y superar las limitaciones analíticas de la visión procedural,
-hemos propuesto una visión diferente de este método de reparto,
+## Objetivo
+
+El objetivo de esta fase es
+proporcionar una formulación algebraica del sistema D'Hondt
+que facilite su análisis,
+superando las limitaciones analíticas de la visión procedural.
+Para ello, se propone una perspectiva diferente de este método de reparto,
 que permite relacionar los parámetros involucrados y
 comprender las dinámicas entre ellos,
 sin ejecutar el algoritmo.
+
+## Derivación algebraica
 
 El algoritmo de reparto consta de dos partes:
 La **generación de cocientes**
@@ -82,7 +88,7 @@ $$
 Ei = \left\lfloor{ Vi \over Pc } \right\rfloor   \quad , \quad \forall{i}
 $$
 
-O expresado de otra manera:
+O, expresado de otra manera:
 
 $$ V_i = E_i \cdot P_c + R_i   \quad , \quad \forall{i} $$ 
 
@@ -102,14 +108,133 @@ están acotados por el precio de corte:
 
 $$ 0 <= R_i < P_c    \quad , \quad \forall{i} $$
 
+Otro parámetro significativo es el **primer cociente no escogido**, $P_d$.
+Por definición, es el siguiente cociente menor que $P_c$.
+Eso quiere decir que cualquier precio $P$ tal que $P_d < P <= P_c$,
+no incorporaría ningún escaño más al resultado,
+y, por lo tanto, repartiría los mismos escaños que $P_c$.
 
-El **primer cociente no escogido**, $P_d$, también es especial,
-cualquier precio $P$ tal que $P_c >= P > P_d$, conseguiría también un reparto exacto.
-$P_d$ es por definición, el siguiente, cociente menor que $P_c$
-mientras el precio no supere $P_d$, ningún otro cociente entrará en el reparto.
+De forma general, un reparto por $P$ es exacto si
+Se reparten justo los escaños disponibles,
+y nadie tiene restos para un escaño de más.
+Formalmente:
+
+$$
+    E = \sum_i{E_i} \quad \and \quad 0 <= R_i < P \forall i
+$$
+
+$P_c$ además asegura que haya una candidatura sin restos.
+Formalmente:
+
+$$
+    \exist R_i ,  R_i = 0
+$$
 
 
-En resumen, manipular $P_c$ como una variable algebraica, sin concretar su valor,
-nos abstrae del algoritmo y facilita el estudio,
-aprovechando la relación que tiene con el resto de parámetros.
+## Interpretación
+
+### Observación: Los restos no alteran el resultado
+
+Podemos modificar una situación dada
+eliminando para una candidatura tantos votos como restos,
+por ejemplo, enviándolos a la abstención.
+
+$$
+V_i' = V_i - R_i; \quad R_i' = 0
+$$
+
+El escenario resultante repartirá
+los mismos escaños $E_i$ al mismo precio $P_c$
+que el escenario original.
+
+
+
+### Observación: Posibilidad de mejora sumando restos, con peros
+
+Analizando un resultado concreto, es común observar que
+si juntamos los restos de dos candidaturas,
+se podría obtener un escaño adicional.
+Eso es cierto, y sugiere que una redistribución
+de los votos podría mejorar
+el resultado conjunto.
+
+Pero sería un sesgo retrospectivo
+pensar que esta observacion se puede aplicar
+más allá de un analisis a posteriori.
+Si no conocemos la situación de partida,
+no conocemos los restos disponibles.
+Si se trasvasan menos votos,
+que los que le faltan a los restos del receptor
+para sumar un escaño, se podría no ganar el escaño adicional.
+Si se trasvasan más votos
+que los restos que dispone el emisor,
+podría perder uno de los escaños de los que dispone.
+
+
+### Observación: Resultados recurrentes a intervalos $P_c$
+
+Dada una situación inicial con un **precio de corte** $P_c$ fijado,
+si hacemos un trasvase entre dos candidaturas, emisora (A) y receptora (B),
+de un número de votos igual a $P_c$,
+obtenemos una situación equivalente en la que se mantiene:
+
+- el mismo precio de corte $P_c$,
+- los mismos restos de todas las candidaturas,
+- los mismos escaños para las candidaturas que no sean A y B,
+- la misma suma de escaños entre las candidaturas A y B,
+
+Solo cambia la distribucion de esos escaños entre A y B
+que A resta un escaño y B lo suma.
+
+    Va' = Va - Pc = Pc Ea + Ra - Pc = Pc (Ea -1) + Ra => Ea' = Ea-1
+    Vb' = Va + Pc = Pc Eb + Rb + Pc = Pc (Eb +1) + Rb => Eb' = Eb+1
+ 
+Esto pasa en cualquier situación de partida
+en la que haya suficientes votos para hacer tal trasvase.
+Implica que los mismos resultados
+van a estar repitiendose a medida que
+transferimos más votos,
+descartando, que haya escenarios mejores
+con el voto concentrado, que no existan ya
+con el voto no concentrado.
+
+En este punto, aún no podríamos descartar
+que, con mayor concentración de voto,
+sea más probable acabar en una situación positiva,
+que en una situación con poca concentración.
+
+## Conclusiones
+
+En resumen,
+al abstraer el precio de corte $P_c$ como resultado del algoritmo
+y establecer relaciones entre este valor y el resto de parámetros,
+se pueden obtener conclusiones generales sobre la aplicación de D'Hondt
+sin tener que ejecutar el algoritmo para cada caso.
+
+Los votos a una candidatura se dividen
+en votos que consiguen escaños y restos que no intervienen en el reparto.
+Los restos de toda candidatura estan limitados por el precio de corte.
+
+También hemos detectado varios trasvases que
+mantienen algunas condiciones del reparto.
+Por ejemplo, reducir para una candidatura
+tantos votos como restos tiene o
+trasvasar entre dos candidaturas
+tantos votos como el precio de corte.
+
+Los efectos de este ultimo tipo de trasvase, además,
+demuestran que, por concentración de voto,
+no vamos a obtener un resultado conjunto
+que no sea posible obtener con menos concentración.
+Esto no nos permite descartar, sin embargo, que,
+cuando hay más concentración, los resultados
+mejores sean más probables que cuando no la hay.
+
+Por eso debemos establecer un modelo probabilistico,
+que considere la probabilidad de estar en cada situación,
+para considerar si un trasvase determinado,
+tiene más probabilidad de llevaros a un peor o a un mejor
+resultado conjunto.
+Esto es lo que abordamos en la siguiente fase.
+
 

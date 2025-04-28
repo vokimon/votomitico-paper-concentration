@@ -61,7 +61,8 @@ Por eso, formularemos las _hipotesis de cambio_
 considerando un grupo de votantes de un determinado perfil
 que tomarán coherentemente la misma decisión de cambio de voto.
 
-Podríamos plantear dos preguntas complementarias:
+Podemos incorporar el tamaño del grupo en el enunciado del problema
+de dos formas complementarias:
 
 - _¿Cómo un grupo de N personas, que
 opte por votar a X en vez de Y, puede alterar el resultado
@@ -100,15 +101,17 @@ que nos permitió abstraernos de él.
 Esta representación nos llevó a conclusiones clave, 
 como que trasvasar una cantidad de votos
 equivalente al precio de corte,
-mantenia constante el precio, los restos y el resultado conjunto,
+mantenia constante el mismo precio corte,
+los restos de todas las candidaturas
+y el resultado conjunto de bloque.
 Quedó como incognita qué sucede cuando traspasamos
 una fracción de ese precio.
 
 ### Fase 3: Modelo aproximado {.unnumbered}
 
-Bajo la suposición burda de que
+Bajo la aproximación, conscientemente burda, de que
 el precio de corte no se ve alterado por los trasvases,
-los restos quedaron como parámetro
+los restos quedaron como único parámetro
 que determina cuando se gana o pierde un escaño.
 Al modelar probabilísticamente los restos iniciales de receptor y emisor,
 obtuvimos una probabilidad equivalente de ganar y perder un escaño conjunto.
@@ -122,7 +125,8 @@ eliminando las aproximaciones del modelo anterior.
 Dado que el problema seguía siendo complejo,
 en lugar de aproximar, redujimos la complejidad
 identificando los parámetros esenciales para ignorar el resto.
-Así, pudimos establecer cómo y dónde se producían los cambios de precio
+Así, pudimos establecer, de forma general,
+cómo y dónde se producían los cambios de precio
 a lo largo de un trasvase progresivo,
 y cuáles eran sus implicaciones en la representación individual y conjunta del bloque.
 Esto permitió caracterizar y parametrizar las características

@@ -11,21 +11,6 @@ en el resultado conjunto de ambos.
 
 ## Procedimiento
 
-1. **Establecimiento de un marco algebraico para D'Hondt**
-    Para superar las limitaciones de la perspectiva procedural de D'Hondt,
-    se propuso un marco algebràico,
-    con el _precio de corte_ como parámetro clave.
-    El _precio de corte_ condensa en un único valor el resultado del algoritmo,
-    permitiendo derivar los valores de salida,
-    a partir de las entradas con una relación algebraica simple.
-    
-    En este primer modelo,
-    también se consideró que el _precio de corte_ no cambiaba
-    como resultado de un trasvase entre dos candidaturas.
-    Esta suposición no es cierta pero simplificó el modelo
-    suficiente como para facilitar su abordaje.
-
-
 2. **Cálculo probabilístico de los cambios en la representación** 
 
     Se identificó el parámetro relevante en el modelo
@@ -51,21 +36,6 @@ en el resultado conjunto de ambos.
     para comprobar si el cambio en los resultados del reparto
     coincidía con las observaciones empíricas obtenidas del simulador.
 
-
-## Observaciones preliminares
-
-Según la perspectiva de que en el recuento
-los votos se dividen en votos transformados y restos,
-podemos observar los siguientes invariantes:
-
-- El resultado de una situación inicial dada no cambiará si
-    - si eliminamos total o parcialmente restos.
-    - o si añadimos restos sin llegar al precio de corte
-- En ambos casos el reparto y el precio de corte seguirá siendo el mismo.
-
-- El precio de corte y los restos se mantendrán si
-    - transferimos tantos votos como el precio de corte entre candidaturas
-    - tambien se mantendrá la suma de escaños entre las candidaturas 
 
 También se observa intuitivamente que restos de varios partidos
 podrían agregarse para llegar a un escaño extra.
