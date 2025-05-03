@@ -29,3 +29,15 @@
     - Efecto del umbral electoral
     - Voto estratégico en el senado
 
+- Solucionar exclusion de los cocientes de A y B en Pmax y Pmin
+    - Solo podemos considerar Pmax y Pmin constantes si son de terceras candidaturas
+    - Pero si los incluimos podemos explicar que Vab/Eab>=Pmax>=Pmin>=Vab/(Eab+1)
+
+- Motivos psicosociales del mantenimiento del mito
+    - Brechas cognitivas en la percepción del voto útil.
+    - Sobrestimación de lo visible: el último escaño.
+    - Tendencia a simplificar sistemas complejos.
+    - Implicaciones para la comunicación política y la alfabetización electoral.
+
+- Paper que analiza la concentracion de voto como voto util en Mexico:
+    https://www.ssoar.info/ssoar/bitstream/handle/document/76891/ssoar-2021-pena-La_estrategia_de_voto_util.pdf?sequence=1&isAllowed=y

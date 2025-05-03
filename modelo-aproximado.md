@@ -3,47 +3,114 @@
 
 ## Objetivo
 
-El objetivo de esta fase es desarrollar un modelo matemático  
-que permita explicar las observaciones empíricas de la fase 1.  
-A partir del modelo, se extraerán conclusiones sobre qué predicciones  
-se pueden hacer sobre el efecto de un trasvase entre dos partidos  
-en el resultado conjunto de ambos.
+El objetivo de esta fase es desarrollar un modelo
+que permita explicar las observaciones empíricas de la fase 1,
+y hacer predicciones generales de como se altera resultado conjunto
+despues de un trasvase de votos entre dos candidaturas.
 
-## Procedimiento
+Para simplificar la obtención de este modelo,
+vamos a suponer que los trasvases de voto no alteran el precio de corte.
+Esto nos permite abstraernos de las redes complejas de dependencias
+entre los votos de las distintas candidaturas y sus resultados.
 
-2. **Cálculo probabilístico de los cambios en la representación** 
+En la fase anterior, vimos que, en muchos trasvases, el precio de corte se mantiene:
+cuando traspasamos tantos votos como el precio de corte,
+o cuando traspasamos restos sin que estos superen el precio de corte
+en la candidatura destino.
+En cambio, en los casos empíricos se constata que,
+en ciertos tramos entre escaño y escaño transferido,
+el precio de corte oscila entre dos precios, normalmente, cercanos.
 
-    Se identificó el parámetro relevante en el modelo
-    que determina cuando se produce un cambio de representación de una candidatura.
-    Dada la incertidumbre a priori sobre el valor de este parámetro
-    en una situación inicial de referencia arbitraria,
-    se planteó un modelo probabilístico.
-    Este modelo permitió estimar la probabilidad de un cambio en los escaños,
-    cuando se alteran los votos a la candidatura en una cantidad determinada.
+Más tarde, se evaluarán los casos en que esta suposición no se da
+y los efectos que puede tener en los resultados obtenidos.
 
-3. **Probabilidad combinada de emisor y receptor**
-    Se planteó un escenario de trasvase,
-    en el que los cambios de votos en el emisor y receptor
-    se realizaban a la vez, pero con signo inverso.
-    Es decir, si uno ganaba escaños, el otro los perdía en la misma proporción.
-    Se combinaron las probabilidades
-    de ganancia y pérdida de escaños para cada candidatura,
-    con el objetivo de calcular la probabilidad de que se produzca un cierto cambio en signo y magnitud
-    en la representación conjunta de ambas candidaturas.
+## Análisis de caja blanca
 
-4. **Contraste del modelo y las observaciones empíricas**
-    Finalmente, se analizó el impacto de un trasvase progresivo de votos en el modelo,
-    para comprobar si el cambio en los resultados del reparto
-    coincidía con las observaciones empíricas obtenidas del simulador.
+Según el método de variación controlada se plantea:
+¿Cuál es el efecto de añadir o quitar N votos a una candidatura?
+
+Dividiremos el trasvase en dos trasvases,
+uno que trasvasa la parte divisible por $P_c$,
+y otro que trasvasa la parte fraccional.
+
+Por el teorema de resultados repetidos,
+cada $P_c$ votos trasvasados de A a B,
+se traspasa un escaño, y tanto los restos como el precio de corte se mantienen.
+Esto resuelve la parte divisible por $P_c$.
+
+Quedaría por saber qué pasa con un trasvase de una fracción del precio de escaño
+$0 <= N < P_c$.
+Para eso, la clave es en qué parte de los restos se encuentra
+cada candidatura en el escenario inicial.
+La candidatura receptora, conseguira un escaño más
+si sus restos estan a N o menos de sumar $P_c$.
+Al mismo tiempo, la candidatura emisora, perderá un escaño
+si tiene menos de N votos de restos.
+
+Este tipo de análisis lo podemos observar a posteriori,
+pero, en un análisis preelectoral no podemos saber, solo estimar,
+cuáles son los restos de cada formación.
+Para eso, es necesario realizar un análisis probabilístico.
+
+## Ditribución probabilística de los restos
+
+La mejor información de la que disponemos sobre un resultado electoral
+que aún no se ha producido son las encuestas preelectorales [@alaminos2023metodos].
+Las encuesta modelan el voto a cada candidatura como una distribución normal.
 
 
-También se observa intuitivamente que restos de varios partidos
-podrían agregarse para llegar a un escaño extra.
-Esto es evidente en un análisis a posteriori,
-lo cual refuerza un cierto sesgo cognitivo,
-pero también es verdad que si trasvasamos más de la cuenta
-podría pasar que la candidatura emisora no llegue a sumar su último escaño.
-Y, a priori no conocemos los restos que puede transferir sin tener perdidas.
+
+
+
+**OUTLINE**
+
+- Suposición de precio fijo
+    - Las candidaturas van completando sus escaños
+    - En la situacion inicial quedan a un número de restos
+    - Un in/exflujo de escaños implica movimiento en el resultado por contraste
+- Caja blanca
+    - A precio fijo si cubrimos lo que falta para el escaño lo obtenemos
+        - en realidad, para quitarle el escaño tendriamos que subirle el precio
+    - A precio fijo si perdemos los restos perdemos un escaño.
+        - en realidad, estaríamos bajando el precio, hasta que otro cociente entre y se lleve el escaño
+    - Cuando un trasvase de N gana el escaño: cuando me faltan N o menos
+    - Cuando un trasvase de N pierde el escaño: cuando tengo N restos o menos
+- Caja gris
+    - Probabilidad que mis restos valgan x? Queremos una distribución
+    - Estimaciones electorales como una normal
+    - Del voto a los restos con un modulo
+    - Normal doblada -> Uniforme
+    - Simil de la ruleta
+        - Vueltas -> Escaños, Numero -> Restos, Fuerza -> Encuestas
+        - Incerteza proporcional a la fuerza
+        - Con poca fuerza es más probable acertar
+    - Probabilidad perdiendo N votos, perder un escaño
+    - Probabilidad ganando N votos, ganar un escaño
+    - Probabilidad cruzada entre emisor y receptor
+    - La mitad de la zona es de no cambio
+    - Las zonas de perdida son iguales
+- Emulación de los resultados empíricos
+    - Escenario inicial como punto en el cuadro de restos combinados
+    - Trasvase como movimiento diagonal +-(+N,-N)
+    - Bordes circulares, cuando los cruzamos cambia el reparto
+    - Reproducción del escenario sin pérdida
+    - Reproducción del escenario cíclico
+- Realismo o no de precio fijo
+    - El precio se mantiene
+        - Con múltiplos de P
+        - Mientras movamos restos
+    - Cuando no se cumple
+        - Si cedemos mas que restos, no perdemos el escaño
+          sinó que empezamos a bajar el precio hasta que otro cociente entra y lo perdemos.
+        - Si subimos restos mas alla del precio el nuevo cociente marcará el precio
+          y el último cociente anterior caera.
+    - Normalmente los cocientes suelen estar juntos
+    - En esos rincones se podría estar ocultando la pretendida ventaja.
+    - En todo caso en el próximo análisis lo cubre
+
+
+**LO QUE QUEDA DE ESTE APARTADO ES BORRADOR A REESCRIBIR PORQUE SE MOVIERON COSAS FUERA**
+
 
 
 ## Transferencia entre una candidatura y la abstención
@@ -65,11 +132,6 @@ Despues pasaremos a un análisis de **caja gris**,
 en el que la situación inicial en el que partimos de una situación incierta,
 con un cierto 
 
-El análisis de caja gris equivaldría al que haríamos ante los datos de una encuesta
-para decidir un voto estratégico.
-Mientras que el análisis de caja blanca equivaldría al que haríamos a posteriori,
-postelectoralmente.
-
 
 
 El objetivo final sería evaluar la transferencia de votos entre candidaturas,
@@ -84,20 +146,6 @@ es decir, supondremos que el precio de corte no se ve alterado con el cambio.
 Sabemos que eso no es cierto, por lo que hemos observado empíricamente.
 
 
-- Modelo de caja blanca:
-    - Sirve para entender como funciona pero también como análisi  a posterior
-    - Sabemos cual es la situación actual
-    - Considerar si un 
-    - Si un trasvase de votos 
-
-- Para evaluar el efecto de un cambio
-    - Evaluamos 
-    - Suponer una situacion desconocida pero concreta
-    - Proponer un cambio
-    - 
-- Partimos de una situación concreta
-
-
 
 ## Probabilidad de cambios en la representación
 
@@ -106,47 +154,39 @@ planteemos que cambiamos los votos de una candidatura en N votos.
 ¿Qué cambios son posibles y con qué probabilidades se pueden
 producir en su repesentación en escaños?
 
-Si no conocemos la representación de una candidatura o incluso si la conocemos con una cierta incerteza siguiendo una distribución normal,
+Si no conocemos la representación de una candidatura o incluso
+si la conocemos con una cierta incerteza siguiendo una distribución normal,
 podemos decir por el Theorema de 
 
 
 
+## Alcance de la suposición de precio fijo
 
-### Desarrollo del Modelo de Probabilidades
+> TODO:
+> Aquí entramos en un nivel de análisis que justamente estamos diciendo no querer entrar.
+> Considerar señalar simplemente que se ha observado el cambio de precio empíricamente.
+> Mover la casuística a un punto donde sepamos más del tema.
+> Candidatos: las conclusiones de esta fase o de la siguiente o la intro de la siguiente.
 
-Una vez establecido el **precio de corte** ($$ P_c $$),
-analizamos cómo los trasvases de votos entre partidos afectarían la distribución de escaños.
-Para hacerlo, representamos cada posible situación de los restos de los partidos \( A \) y \( B \)
-en un **cuadro de probabilidades**.
-En este cuadro, cada punto dentro del cuadro representaba una combinación de los restos de \( A \) y \( B \)
-al inicio del proceso, con los valores de los restos dentro del rango \( [0, P_c) \).
+Sin embargo aún hay muchos otros casos en que
+un trasvase de escaños implica un cambio en el precio de corte:
 
-Este enfoque generaba un **espacio bidimensional** en el que las combinaciones de restos de los partidos se representaban gráficamente. 
+Cuando un trasvase consume más allá de los restos de una candidatura,
+no tiene porque perder el escaño en ese momento.
+Justamente el precio se adapta reduciéndose,
+hasta que franquea un cociente menor y
+su candidatura se queda con el escaño.
 
-El punto de partida de cada trasvase en el cuadro estaba determinado por los restos de \( A \) y \( B \), y el trasvase de votos a través de este cuadro se describía mediante un movimiento diagonal. A medida que los votos se transferían, el punto dentro del cuadro se desplazaba, y dependiendo de la zona en la que se moviera, se producían diferentes resultados:
+Cuando un trasvase suma restos a una candidatura por encima del precio de corte,
+esta la candidatura obtiene un escaño de la que fijaba el precio hasta ese momento
+y pasa a fijarlo la que ha crecido.
 
-- Si el punto alcanzaba uno de los bordes del cuadro, implicaba que uno de los partidos ganaba o perdía un escaño.
-- Debido a la geometría **toroidal** de los restos (es decir, que los bordes del cuadro se conectan entre sí),
-el punto que llegaba a un borde aparecía en el lado opuesto del cuadro, permitiendo que el proceso de trasvase continuara cíclicamente.
+Cuando la candidatura que recibe votos es la que fija el precio de corte,
+el precio estará augmentando, y, en algún momento,
+alguno de los coeficientes mayores pasarán a ser menor
+y cederle el escaño.
 
-Este movimiento en el cuadro reflejaba cómo, dependiendo de la zona por la que transitara, los escaños de las candidaturas se verían afectados, siguiendo los patrones observados empíricamente.
-
-### Ciclicidad y Patrones de Cambio
-
-El análisis del cuadro de probabilidades reveló dos tipos de patrones de escaños observados empíricamente en los trasvases de votos:
-
-1. **Patrón con cambio de escaños:**
-   - En este patrón, las transferencias de votos provocaban que un partido ganara un escaño a medida que el otro partido perdía.
-   - Este patrón se repetía cíclicamente a medida que el punto se desplazaba por el cuadro.
-
-2. **Patrón sin cambio de escaños:**
-   - En este patrón, aunque los votos se trasladaban entre los partidos, no se observaba ningún cambio neto en el número de escaños de los partidos.
-   - Este patrón también se repetía cíclicamente, y el cambio solo se manifestaba como una redistribución de los votos entre los partidos sin que uno ganara o perdiera escaños.
-
-Ambos patrones se generaban a partir de la interacción de los restos de los partidos con los límites del cuadro de probabilidades, donde los bordes del cuadro determinaban el cambio de escaños. Estos resultados coincidían con las observaciones empíricas y nos permitieron hacer predicciones basadas en la zona en la que se encontrara el punto inicial y cómo éste interactuaba con los bordes del cuadro.
+> TODO: Hemos demostrado que eso no pasará antes de trasvasar $P_d$ votos?
 
 
-¡Por supuesto! A partir de ahora te paso las propuestas de fragmentos en el formato **Markdown** adecuado y estructurado como lo hemos comentado. 
-
-Te paso ahora la **propuesta para la Fase 2** en ese formato, como dijiste que estábamos en borrador. Aquí tienes:
 

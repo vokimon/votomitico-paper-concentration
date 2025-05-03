@@ -4,15 +4,16 @@ author: David García Garzón
 # {.unnumbered}
 title: Efectos electorales de trasvases de voto entre partidos con base electoral común
 classoption:
+#- twocolumn
 numbersections: true
 link-citations: true
 link-bibliography: true
-#- twocolumn
 bibliography:
 - bibliography.bib
 - bibliography-vote-concentration-calls.bib
 - bibliography-divulgacion-bulo.bib
 - bibliography-juegos-sistemas.bib
+- bibliography-encuestas.bib
 abstract: |
     Una idea ampliamente extendida
     sobre el sistema de representación proporcional de D'Hondt,
@@ -50,22 +51,60 @@ abstract: |
 
 # Condiciones que habilitan el voto estratégico
 
-- Certidumbre en los restos como factor
-- Partidos muy pequeños
-- Pocos escaños a repartir
-- Muchos escaños a repartir con umbral electoral
+**OUTLINE**
 
-# Causas de la difusión del mito
+- En general, la incertidumbre sobre los restos no deja espacio para el voto estrategico
+- En casos concretos hay certidumbre en los restos y podemos armarlo
+    - Partidos muy pequeños
+    - Pocos escaños a repartir
+    - Muchos escaños a repartir con umbral electoral
+- En ninguno de estos casos el criterio es votar al más grande,
+    sino que depende de la situación esperada
 
-- Elementos del sistema electoral que perjudican los minoritarios
-    - Umbral electoral -> solo aplica en pocas circunscripciones en autonómicas
-    - Escasez de escaños
-    - Multiples circunscripciones
-    - Reparto de D'Hondt
+# Discusión
 
-- Percepción relativa de los restos
+**OUTLINE**
+
+- Contraste de los resultados con la literatura existente
+- Refuerza el mito: Sesgo de disponibilidad sumando restos a posteriori:
+    - Tambien es un sesgo de retrospección
+    - Sobreestimamos la probabilidad de un evento porque
+      ejemplos recientes, notorios o emocionalmente impactantes
+      están fácilmente disponibles en nuestra memoria
+    - En este caso cuando vemos a posteriori
+      que un trasvase podría haber supuesto un escaño más.
+    - A priori, ese mismo trasvase podria haber generado una perdida
+- Refuerza el mito: El sistema beneficia a mayoritarios
+    - Metricas de injusticia
+        - Relacion escaños/votos
+        - Relacion restos/votos
+    - Impacto del voto: restos absolutos
+- Refuerza el mito: Restos relativos a los votos o votos relativos a representación
+    - Diluye la percepción de fuerza de tu voto
+    - Argumento para denunciar injusticia del sistema
+        - No válido para la utilidad del voto
+    - Elementos del sistema electoral que perjudican los minoritarios
+        - Umbral electoral -> solo aplica en pocas circunscripciones en autonómicas
+            - Según la situación puede ser más util votar al pequeño para que llegue al umbral
+        - Escasez de escaños
+            - Los restos son una parte mayor de los votos
+            - Hondt es tan proporcional como votos se dediquen a escaños
+            - Se nota mas la desproporcion con Hamilton
+            - En voto estrategico: Es más importante donde esté cada formación que si es grande o pequeño
+        - Multiples circunscripciones
+            - Aqui no tenemos control porque los escaños no se agregan entre distritos
+            - Ni para grandes ni para chicos
+        - Reparto de D'Hondt
 
 # Conclusiones
+
+**OUTLINE**
+
+- Aportaciones: Resultados para las transferencia intra-bloque
+    - Impacto: Mejor voto estrategico. Sin mitos, con evidencia.
+    - Necesidad de difusión de los resultados
+- Aportaciones: Nuevas herramientas para estudiar D'Hondt
+    - Impacto: dirimir otros mitos/dilemas: pactos, umbral, voto en blanco...
 
 # Referencias {.unnumbered }
 

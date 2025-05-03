@@ -10,7 +10,7 @@ según un orden determinado por sus cocientes de reparto.
 
 Este artículo no busca evaluar la idoneidad del sistema
 ni proponer alternativas, como ya hacen otros autores
-[@medzihorsky2019rethinking; @lardeyret1991problem; @bochsler2010gains],
+[@lardeyret1991problem; @bochsler2010gains],
 sino ofrecer herramientas para **comprender su lógica interna**,
 y, de este modo, evaluar cómo distintas decisiones
 afectan al reparto de escaños.
@@ -22,7 +22,7 @@ donde interpretaciones infundadas,
 por error o interés de quien las difunde,
 pueden inducir al electorado a estrategias contrarias a su intención.
 
-Este articulo en concreto se centra,
+Este artículo en concreto se centra,
 en el **dilema de la concentración del voto en los mayoritarios**,
 dentro de un contexto de **lógica de bloques**.
 aunque el marco teórico que se establece
@@ -33,7 +33,7 @@ donde las mecánicas del sistema D'Hondt tengan influencia.
 ## Lógica de bloque
 
 Decimos que un perfil del electorado opera según una **lógica de bloque**
-cuando éste pecibe que,
+cuando éste percibe que,
 para alcanzar sus objetivos y prioridades políticas,
 es más importante el resultado de un bloque de partidos en conjunto,
 que lo que le pase a una candidatura o a otra en concreto.
@@ -53,7 +53,7 @@ por parte de cada candidatura por separado.
 Más paradójico aún es que, desde una **lógica partidista**,
 algunas candidaturas apelen a la **lógica de bloques**
 para captar bases electorales
-que, en realidad, son más cercanas
+que, en realidad son más cercanas
 a otras opciones dentro del mismo bloque.
 
 En contextos de **lógica de bloques**,
@@ -66,10 +66,25 @@ Cabe diferenciarlo de otro dilema similar,
 igualmente interesante, pero que no abordaremos en este artículo,
 que es la conveniencia de los **pactos preelectorales**
 para maximizar el impacto del bloque.
-El de la concentración del voto es un dilema que,
-principalmente, afronta el electorado en el momento de votar.
-El segundo, lo afrontan las candidaturas
+El dilema de la concentración del voto,
+principalmente, lo afronta el electorado en el momento de votar.
+El de los pactos, lo afrontan las candidaturas
 antes de entrar en la contienda electoral.
+Ambos dilemas se rigen por condicionantes distintos
+y no se puede extrapolar las conclusiones de uno para el otro.
+[^pactos]
+
+[^pactos]:
+    Obviando que los pactos no suman matemáticamente los votos,
+    debido a factores humanos que añaden o restan votantes,
+    si solo consideramos factores mecánicos,
+    un pacto preelectoral podría entenderse como
+    un trasvase total de votos.
+    El análisis debe diferir,
+    ya que, en un trasvase dedicido por los votantes,
+    siempre habrá quien elija votar a la candidatura emisora,
+    y este comportamiento tendrá consecuencias
+    que exploraremos más adelante.
 
 ## El dilema de la concentración
 
@@ -81,7 +96,8 @@ El supuesto detrás de esta idea es que los partidos grandes,
 como el sistema electoral les favorece,
 transforman más eficientemente los votos en escaños.
 
-Algunos ejemplos recientes de este tipo de llamamientos
+Algunos ejemplos recientes, en España,
+de este tipo de llamamientos
 por parte de políticos de color diverso incluyen:
 
 - Asturias 2023: Garzón (IU) [@garzon2023asturias]
@@ -99,14 +115,19 @@ por parte de políticos de color diverso incluyen:
 Si bien sería muy ingenuo exigir rigor científico a los políticos en campaña,
 el argumento está profundamente interiorizado en la sociedad.
 Periodistas y analistas lo incorporan en sus análisis y divulgaciones,
-lo que contribuye a su perpetuación [@tezanos_2019; @lavanguardia2023grandes; @elmundo2023calculo].
+lo que contribuye a su perpetuación [@business_2023; @lavanguardia2023grandes; @elmundo2023calculo; @elconfidencial2023votoutil].
+
+TODO: Insertar los artículos que critican la estrategia,
+por su impacto en la representación política y la pluralidad,
+pero no cuestionan su efectividad matemática.
 
 Cabe reconocer que algunos artículos han empezado a cuestionar este supuesto
 [@eldiario_2023; @confidencial_2023; @infolibre_2023].
 Matizan la idoneidad de su aplicación en algunos casos,
-o justifican la divergencia inexperada
-con el hecho de que el sistema no siempre
-sigue un comportamiento lineal.
+o justifican la divergencia inesperada
+con el hecho de que _«el sistema no siempre
+sigue un comportamiento lineal»_,
+o directamente cuestionan que se dé [@rios2019votoutil].
 
 Durante mucho tiempo, en la literatura científica,
 también se ha dado por supuesto que D'Hondt favorecía a los mayoritarios
@@ -118,7 +139,7 @@ que D'Hondt genere un beneficio desproporcionado a los grandes.
 A esto, se suman casos recientes en diversas convocatorias en España,
 donde un trasvase de voto hacia el mayoritario,
 no solo no ha tenido el efecto esperado,
-sino que han resultado en un peor resultado para el bloque en conjunto[^1].
+sino que han resultado en un peor resultado para el bloque en conjunto[^casoreal].
 
 A la luz de estos precedentes, se evidencia la necesidad
 de realizar un análisis más sistemático sobre este asunto.
@@ -126,17 +147,17 @@ de realizar un análisis más sistemático sobre este asunto.
 Este artículo no pone en duda que el sistema electoral en conjunto
 beneficie a los mayoritarios.
 Es así.
-Lo que que se examina es si tal beneficio puede ser explotable
+Lo que se examina es si tal beneficio puede ser explotable
 para que el voto personal sea más poderoso.
 
-[^1]: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
-    Muchos votantes de ZURDOS respondieron al llamamiento de PROGRES
+[^casoreal]: TODO: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
+    Muchos votantes de ROJOS respondieron al llamamiento de PROGRES
     para concentrar el voto y frenar el ascenso de la extrema derecha.
-    Así, ZURDOS se quedó a pocos votos de conseguir un escaño más,
+    Así, ROJOS se quedó a pocos votos de conseguir un escaño más,
     mientras que a PROGRES les sobraron muchos votos que no se tradujeron en representación.
     El último escaño se lo llevó VOX,
     pero hubiera ido al bloque de izquierda si algunos de los votos trasvasados
-    a PROGRES se hubieran mantenido en ZURDOS.
+    a PROGRES se hubieran mantenido en ROJOS.
 
 
 ## Una perspectiva habilitadora del sistema D'Hondt
@@ -144,15 +165,15 @@ para que el voto personal sea más poderoso.
 El uso habitual del sistema D'Hondt es procedural:
 Se aplica un algoritmo y se obtiene el reparto de escaños.
 Sin embargo, este artículo adopta una perspectiva diferente,
-que facilita una comprensión más intuitiva de las dinámicas internas
-y habilita un tratamiento algebraico del reparto de escaños.
+que, por un lado, facilita una comprensión más intuitiva de las dinámicas internas
+y, por otro, habilita un tratamiento algebraico del reparto de escaños.
 
 El algoritmo de D'Hondt genera una serie de cocientes,
 dividiendo los votos de las candidaturas por sucesivos enteros,
 y seleccionando los cocientes mayores hasta completar el número de escaños disponibles.
 Es decir, como su nombre indica,
 los cocientes se escogen en orden decreciente.
-A continuación, se asignan los escaños a las candidaturas
+Finalmente, se asignan los escaños a las candidaturas
 de las que provienen los cocientes seleccionados.
 
 La visión procedural del sistema D'Hondt complica la comprensión
@@ -165,7 +186,13 @@ La idea habilitante es entender el algoritmo de D'Hondt
 como la búsqueda de un **precio de corte**,
 *el número de votos necesarios
 para que una candidatura consiga un escaño.*
-Este precio, aunque no esté determinado, permite establecer relaciones
+Este precio, aunque no conozcamos su valor concreto,
+permite establecer relaciones
 entre los demás elementos que intervienen en el reparto,
-ignorando las complejidades del algoritmo,
-lo cual se desarrollará más adelante.
+ignorando las complejidades del algoritmo.
+
+Esta idea se desarrolla más ampliamente en la sección \ref{sec:modelo-algebraico}.
+La introducimos aquí por su centralidad en el artículo
+y porque es una herramienta que creemos que puede tener
+impacto más allá del dilema concreto que se analiza.
+

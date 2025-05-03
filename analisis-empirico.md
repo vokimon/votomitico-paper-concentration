@@ -45,7 +45,7 @@ desde 1977, las primeras elecciones democráticas,
 hasta 2011[^2011].
 También se usaron datos sintéticos, con el fin de tener escenarios más controlados.
 
-El simulador, que incluye los datos históricos y sintéticos,  
+El simulador, que incluye los datos históricos y sintéticos,
 está disponible en votomitico.org.
 tanto la versión original para escritorio[^envote],
 como la versión online[^revote].

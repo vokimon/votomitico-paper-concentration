@@ -1,4 +1,4 @@
-# Marco algebraico para D'Hondt
+# Marco algebraico para D'Hondt {#sec:modelo-algebraico}
 
 ## Objetivo
 
@@ -33,7 +33,7 @@ de los coeficientes[^coeficientes_entrelazados].
 
     Son optimizaciones que tenían mucho sentido
     cuando las divisiones se hacían a mano.
-    Consideramos que esta versión, menos óptima pero más simple,
+    Consideramos que esta versión, menos óptima,
     deja más claro el propósito del algoritmo.
 
 La **generación de cocientes** calcula,
@@ -123,31 +123,124 @@ $$
     E = \sum_i{E_i} \quad \and \quad 0 <= R_i < P \forall i
 $$
 
-$P_c$ además asegura que haya una candidatura sin restos.
-Formalmente:
+El precio de corte $P_c$ es de estos, el mayor y el que asegura, además,
+que haya al menos una candidatura sin restos.
+Formalmente, sabemos que un precio exacto es tambien el de corte si:
 
 $$
-    \exist R_i ,  R_i = 0
+    \exists R_i  |  R_i = 0
 $$
 
 
 ## Interpretación
 
-### Observación: Los restos no alteran el resultado
+A continuación, se detallan una serie de conclusiones,
+que el formalismo anterior permite extraer,
+en una primera mirada.
 
-Podemos modificar una situación dada
-eliminando para una candidatura tantos votos como restos,
-por ejemplo, enviándolos a la abstención.
+### Teorema de la inutilidad de los restos
+
+**Teorema:**
+Dado un escenario inicial,
+donde para una formación $i$,
+$V_i = E_i P_c + R_i$,
+obtendremos el mismo reparto de escaños,
+si modificamos sus votos tal que 
 
 $$
-V_i' = V_i - R_i; \quad R_i' = 0
+-R_i <= \Delta V_i < P_c - R_i
 $$
 
-El escenario resultante repartirá
-los mismos escaños $E_i$ al mismo precio $P_c$
-que el escenario original.
 
+**Demostración**
 
+Para obtener el mismo resultado,
+si expresamos los nuevos votos como,
+$$
+V_i' = E_i P_c + R_i'
+$$
+
+Se tendría que cumplir la restricción sobre los restos
+que requiere un reparto exacto:
+$$
+0 <= R_i' < P_c
+$$
+
+Tenemos que:
+$$
+\Delta V_i = V_i' - V_i = R_i' - R_i \\
+$$
+$$
+-R_i <= \Delta V_i = R_i' - R_i < P_c - R_i \\
+$$
+$$
+0 <= R_i' < P_c  \quad q.e.d.
+$$
+
+**Observaciones**
+
+Esto no quiere decir que $P_c$ siga siendo el precio de corte.
+Normalmente, sí lo será,
+pero si añadimos restos a la candidatura que marca el precio de corte,
+y por tanto $R_i=0$,
+la condición para ser precio de corte dejará de ser cierta,
+y simplemente $P_c$ será ahora un precio de reparto exacto.
+
+**Discusión:**
+
+Una intuición que podemos extraer de aquí es que
+los restos, o votos inútiles, funcionan de forma
+muy parecida, en formaciones grandes y pequeñas.
+Todas pueden acomular hasta $P_c$ votos
+sin que haya cambio en la respresentación.
+
+Es importante tener en cuenta que
+la operación de modificar los restos
+tiene sentido para entender como se comporta el sistema
+o para hacer análisis a posteriori,
+puesto que a priori no conocemos el valor exacto de $R_i$,
+para poder acotar como variamos los votos.
+
+### Teorema de repetición de resultados
+
+**Teorema:**
+Dado un escenario inicial de referencia,
+con un precio de corte $P_c$,
+trasvasar un número de votos igual a $P_c$ entre dos candidaturas,
+emisora (A) y receptora (B),
+resulta en un escenario con:
+
+- el mismo precio de corte,
+- los mismos restos para todas las candidaturas,
+- un escaño trasvasado de A a B, manteniendo el resultado conjunto
+- los mismos escaños para el resto de candidaturas.
+
+**Demostración:**
+
+$$
+V_a' = V_a - P_c = P_c E_a + R_a - P_c = P_c (E_a-1) + R_a \Rightarrow E_a' = E_a-1
+$$
+$$
+V_b' = V_b + P_c = P_c E_b + R_b + P_c = P_c (E_b+1) + R_b \Rightarrow E_b' = E_b+1
+$$
+
+Al mantenerse los mismos restos y la suma de escaños,
+$P_c$ sigue generando un reparto exacto.
+
+**Colorario 1:**
+
+Podemos aplicar la regla tantas veces como escaños tenga el emisor.
+
+**Colorario 2:**
+
+Si al concentrar el voto, obtenemos un resultado conjunto bueno,
+podemos conseguir el mismo resultado en un escenario menos concentrado,
+traspasando el precio al menor.
+Es decir, no hay resultados mejores en situaciones con concentración
+de votos que en situaciones de concentración baja.
+
+Esto no descarta que las situaciones buenas sean más probables en concentración alta.
+Pero si descarta que haya resultados que no se puedan conseguir con menos concentracion.
 
 ### Observación: Posibilidad de mejora sumando restos, con peros
 
@@ -170,38 +263,48 @@ Si se trasvasan más votos
 que los restos que dispone el emisor,
 podría perder uno de los escaños de los que dispone.
 
+### Cotas y estimación para el precio del escaño
 
-### Observación: Resultados recurrentes a intervalos $P_c$
+Las relaciones entre los parámetros también
+nos permiten acotar y estimar el precio de corte,
+lo que puede ser muy útil para el análisis.
 
-Dada una situación inicial con un **precio de corte** $P_c$ fijado,
-si hacemos un trasvase entre dos candidaturas, emisora (A) y receptora (B),
-de un número de votos igual a $P_c$,
-obtenemos una situación equivalente en la que se mantiene:
+Considerando la suma de votos a candidaturas:
 
-- el mismo precio de corte $P_c$,
-- los mismos restos de todas las candidaturas,
-- los mismos escaños para las candidaturas que no sean A y B,
-- la misma suma de escaños entre las candidaturas A y B,
+$$
+    V = \sum_i V_i = P_c E + \sum_i R_i
+$$
 
-Solo cambia la distribucion de esos escaños entre A y B
-que A resta un escaño y B lo suma.
+$$
+    P_c = {V - \sum_i{R_i} \over E}
+$$
 
-    Va' = Va - Pc = Pc Ea + Ra - Pc = Pc (Ea -1) + Ra => Ea' = Ea-1
-    Vb' = Va + Pc = Pc Eb + Rb + Pc = Pc (Eb +1) + Rb => Eb' = Eb+1
- 
-Esto pasa en cualquier situación de partida
-en la que haya suficientes votos para hacer tal trasvase.
-Implica que los mismos resultados
-van a estar repitiendose a medida que
-transferimos más votos,
-descartando, que haya escenarios mejores
-con el voto concentrado, que no existan ya
-con el voto no concentrado.
+Como $R_i$ está acotado, también lo está $P_c$:
 
-En este punto, aún no podríamos descartar
-que, con mayor concentración de voto,
-sea más probable acabar en una situación positiva,
-que en una situación con poca concentración.
+$$
+    {V \over E+K} < P_c <= {V \over E}
+$$
+
+Donde, recordemos, K es el número de candidaturas.
+
+Si consideramos una esperanza para los restos,
+podemos obtener una buena estimación del precio:
+
+$$
+\displaystyle \mathbb {E} [P_c] = {V \over E + K \mathbb{E}[R_i]}
+$$
+
+> TODO: Hacer esta estimación a partir de datos reales de diferentes convocatorias.
+
+> TODO: Efectos del umbral fijo en los restos
+
+> TODO: Cotas y estimaciones permiten descartar el efecto del umbral fijo
+> Podemos descartar umbral del 3% si la suma de escaños y partidos supera 33.
+> Podemos descartar umbral del 5% si la suma de escaños y partidos supera 50.
+
+> TODO: Si el termino normal esta en el denominador,
+> el precio una [distribución Gausiana inversa
+> ](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)
 
 ## Conclusiones
 
@@ -231,10 +334,9 @@ cuando hay más concentración, los resultados
 mejores sean más probables que cuando no la hay.
 
 Por eso debemos establecer un modelo probabilistico,
-que considere la probabilidad de estar en cada situación,
-para considerar si un trasvase determinado,
-tiene más probabilidad de llevaros a un peor o a un mejor
-resultado conjunto.
+que considere la probabilidad de estar en cada escenario de partida,
+y vincule esa probabilidad a los escenarios de destino,
+según su bondad para el resultado conjunto.
 Esto es lo que abordamos en la siguiente fase.
 
 

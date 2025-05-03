@@ -114,9 +114,10 @@ el precio de corte no se ve alterado por los trasvases,
 los restos quedaron como único parámetro
 que determina cuando se gana o pierde un escaño.
 Al modelar probabilísticamente los restos iniciales de receptor y emisor,
-obtuvimos una probabilidad equivalente de ganar y perder un escaño conjunto.
+obtuvimos una probabilidad equivalente
+para los escenarios de ganar y de perder un escaño conjunto.
 También establecimos flujos progresivos de votos
-y comprobamos que tambien seguían patrones parecidos a los empíricos.
+y comprobamos que seguían patrones similares a los empíricos.
 
 ### Fase 4: Modelo general {.unnumbered}
 
