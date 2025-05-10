@@ -39,12 +39,17 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
 
     # Define arrow markers
     arrow_left = dwg.marker(id="arrow-left", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_left.add(dwg.path("M10,0 L0,5 L10,10 Z", fill="black"))
+    arrow_left.add(dwg.path("M10,0 L0,5 L10,10 Z", fill="black"))  # left-pointing for horizontal arrow
     dwg.defs.add(arrow_left)
 
     arrow_right = dwg.marker(id="arrow-right", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_right.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))
+    arrow_right.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))  # right-pointing
     dwg.defs.add(arrow_right)
+
+    # Additional marker for the diagonal red arrow
+    arrow_diagonal_left = dwg.marker(id="arrow-diagonal-left", insert=(5, 5), size=(10, 10), orient="auto")
+    arrow_diagonal_left.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))  # right-pointing, will be rotated
+    dwg.defs.add(arrow_diagonal_left)
 
     # Double-headed arrow (Precio del escaño)
     arrow_y = bar_y - 60
@@ -70,16 +75,19 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         "perder 10.000 votos",
         "costaría un escaño",
     ]
+    red_offset_x = -40
+    red_text_x = red_center + red_offset_x
+
     for i, line in enumerate(red_lines):
         dy = text_block_y + i * line_spacing
-        dwg.add(dwg.text(line, insert=(red_center, dy), text_anchor="middle", font_size=multiline_font_size))
+        dwg.add(dwg.text(line, insert=(red_text_x, dy), text_anchor="middle", font_size=multiline_font_size))
 
     dwg.add(dwg.line(
-        (red_center, text_block_y + len(red_lines) * line_spacing - 2),
+        (red_text_x, text_block_y - 5),
         (red_center, bar_y + bar_height / 2),
         stroke="black",
         stroke_width=1,
-        marker_end=arrow_right.get_funciri()
+        marker_end=arrow_diagonal_left.get_funciri()
     ))
 
     # --- Green zone multiline text and arrow ---
@@ -88,12 +96,15 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         "ganar 10.000 votos",
         "valdría un escaño",
     ]
+    green_offset_x = 40
+    green_text_x = green_center + green_offset_x
+
     for i, line in enumerate(green_lines):
         dy = text_block_y + i * line_spacing
-        dwg.add(dwg.text(line, insert=(green_center, dy), text_anchor="middle", font_size=multiline_font_size))
+        dwg.add(dwg.text(line, insert=(green_text_x, dy), text_anchor="middle", font_size=multiline_font_size))
 
     dwg.add(dwg.line(
-        (green_center, text_block_y + len(green_lines) * line_spacing - 2),
+        (green_text_x, text_block_y - 5),
         (green_center, bar_y + bar_height / 2),
         stroke="black",
         stroke_width=1,
