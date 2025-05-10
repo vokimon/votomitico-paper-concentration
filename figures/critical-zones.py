@@ -3,7 +3,7 @@ from cairosvg import svg2png, svg2pdf
 
 
 def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
-    dwg = svgwrite.Drawing(svg_filename, size=("800px", "200px"))
+    dwg = svgwrite.Drawing(svg_filename, size=("800px", "250px"))
 
     x_start = 100
     x_end = 700
@@ -21,36 +21,16 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
 
     # Red block (N)
     red_width = 50
+    red_center = orange_start + red_width / 2
     dwg.add(dwg.rect((orange_start, bar_y), (red_width, bar_height), fill="red"))
-    dwg.add(dwg.text(
-        "N",
-        insert=(orange_start + red_width, bar_y + 40),
-        text_anchor="middle",
-        font_size="12px",
-    ))
-    dwg.add(dwg.text(
-        "Zona en la que perder 10.000 votos costaría un escaño",
-        insert=(orange_start + red_width / 2, bar_y - 10),
-        text_anchor="middle",
-        font_size="11px",
-    ))
+    dwg.add(dwg.text("N", insert=(orange_start + red_width, bar_y + 40), text_anchor="middle", font_size="12px"))
 
     # Green block (P - N)
     green_width = 50
     green_start = orange_end - green_width
+    green_center = green_start + green_width / 2
     dwg.add(dwg.rect((green_start, bar_y), (green_width, bar_height), fill="green"))
-    dwg.add(dwg.text(
-        "P - N",
-        insert=(green_start, bar_y + 40),
-        text_anchor="middle",
-        font_size="12px",
-    ))
-    dwg.add(dwg.text(
-        "Zona en la que ganar 10.000 votos valdría un escaño",
-        insert=(green_start + green_width / 2, bar_y - 10),
-        text_anchor="middle",
-        font_size="11px",
-    ))
+    dwg.add(dwg.text("P - N", insert=(green_start, bar_y + 40), text_anchor="middle", font_size="12px"))
 
     # Dashed vertical lines and labels
     for x, label in [(orange_start, "Último escaño conseguido"), (orange_end, "Umbral siguiente escaño")]:
@@ -78,6 +58,40 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         insert=((orange_start + orange_end) / 2, arrow_y - 5),
         text_anchor="middle",
         font_size="11px",
+    ))
+
+    # Annotation text and arrows BELOW the bar
+
+    # Text and arrow for red zone
+    red_text_y = bar_y + 90
+    dwg.add(dwg.text(
+        "Zona en la que perder 10.000 votos costaría un escaño",
+        insert=(red_center, red_text_y),
+        text_anchor="middle",
+        font_size="11px",
+    ))
+    dwg.add(dwg.line(
+        (red_center, red_text_y - 5),
+        (red_center, bar_y + bar_height / 2),
+        stroke="black",
+        stroke_width=1,
+        marker_end=arrow_right.get_funciri()
+    ))
+
+    # Text and arrow for green zone
+    green_text_y = bar_y + 110
+    dwg.add(dwg.text(
+        "Zona en la que ganar 10.000 votos valdría un escaño",
+        insert=(green_center, green_text_y),
+        text_anchor="middle",
+        font_size="11px",
+    ))
+    dwg.add(dwg.line(
+        (green_center, green_text_y - 5),
+        (green_center, bar_y + bar_height / 2),
+        stroke="black",
+        stroke_width=1,
+        marker_end=arrow_right.get_funciri()
     ))
 
     # Save the SVG
