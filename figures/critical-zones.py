@@ -10,9 +10,21 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     bar_y = 100
     bar_height = 20
 
-    # Background bar with faded edges
-    dwg.add(dwg.rect((x_start - 50, bar_y), (x_end - x_start + 100, bar_height), fill="lightgray", opacity=0.3, rx=10))
-    dwg.add(dwg.rect((x_start, bar_y), (x_end - x_start, bar_height), fill="gray", rx=10))
+    # --- Gradient fade background (dark blue with transparent edges) ---
+    gradient = dwg.linearGradient(start=(0, 0), end=(1, 0), id="fade-gradient")
+    gradient.add_stop_color(offset="0%", color="#003366", opacity=0)
+    gradient.add_stop_color(offset="5%", color="#003366", opacity=1)
+    gradient.add_stop_color(offset="95%", color="#003366", opacity=1)
+    gradient.add_stop_color(offset="100%", color="#003366", opacity=0)
+    dwg.defs.add(gradient)
+
+    dwg.add(
+        dwg.rect(
+            insert=(x_start - 50, bar_y),
+            size=(x_end - x_start + 100, bar_height),
+            fill="url(#fade-gradient)"
+        )
+    )
 
     # Orange zone
     orange_start = 200
@@ -39,16 +51,15 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
 
     # Define arrow markers
     arrow_left = dwg.marker(id="arrow-left", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_left.add(dwg.path("M10,0 L0,5 L10,10 Z", fill="black"))  # left-pointing for horizontal arrow
+    arrow_left.add(dwg.path("M10,0 L0,5 L10,10 Z", fill="black"))  # left-pointing
     dwg.defs.add(arrow_left)
 
     arrow_right = dwg.marker(id="arrow-right", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_right.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))  # right-pointing
+    arrow_right.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))
     dwg.defs.add(arrow_right)
 
-    # Additional marker for the diagonal red arrow
     arrow_diagonal_left = dwg.marker(id="arrow-diagonal-left", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_diagonal_left.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))  # right-pointing, will be rotated
+    arrow_diagonal_left.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))
     dwg.defs.add(arrow_diagonal_left)
 
     # Double-headed arrow (Precio del escaño)
