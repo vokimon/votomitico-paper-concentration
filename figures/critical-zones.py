@@ -1,5 +1,3 @@
-from svgtools import *
-
 import svgwrite
 from cairosvg import svg2png, svg2pdf
 
@@ -26,7 +24,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     dwg.add(dwg.rect((orange_start, bar_y), (red_width, bar_height), fill="red"))
     dwg.add(dwg.text(
         "N",
-        insert=(orange_start + red_width, bar_y + 40),  # On the right edge of red block
+        insert=(orange_start + red_width, bar_y + 40),
         text_anchor="middle",
         font_size="12px",
     ))
@@ -43,7 +41,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     dwg.add(dwg.rect((green_start, bar_y), (green_width, bar_height), fill="green"))
     dwg.add(dwg.text(
         "P - N",
-        insert=(green_start, bar_y + 40),  # On the left edge of green block
+        insert=(green_start, bar_y + 40),
         text_anchor="middle",
         font_size="12px",
     ))
@@ -54,21 +52,25 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         font_size="11px",
     ))
 
-    # Dashed boundary markers and labels
+    # Dashed vertical lines and labels
     for x, label in [(orange_start, "Último escaño conseguido"), (orange_end, "Umbral siguiente escaño")]:
         dwg.add(dwg.line((x, bar_y - 30), (x, bar_y + bar_height + 10), stroke="black", stroke_dasharray="5,5"))
         dwg.add(dwg.text(label, insert=(x, bar_y - 35), text_anchor="middle", font_size="11px"))
 
-    # Define arrow marker for bidirectional arrow
-    arrow_marker = dwg.marker(id="arrow", insert=(5, 5), size=(10, 10), orient="auto")
-    arrow_marker.add(dwg.path("M0,5 L10,0 L10,10 Z", fill="black"))
-    dwg.defs.add(arrow_marker)
+    # Define arrow markers
+    arrow_left = dwg.marker(id="arrow-left", insert=(5, 5), size=(10, 10), orient="auto")
+    arrow_left.add(dwg.path("M10,0 L0,5 L10,10 Z", fill="black"))
+    dwg.defs.add(arrow_left)
 
-    # Double-headed arrow (P)
+    arrow_right = dwg.marker(id="arrow-right", insert=(5, 5), size=(10, 10), orient="auto")
+    arrow_right.add(dwg.path("M0,0 L10,5 L0,10 Z", fill="black"))
+    dwg.defs.add(arrow_right)
+
+    # Double-headed arrow (Precio del escaño)
     arrow_y = bar_y - 60
     arrow_line = dwg.line((orange_start, arrow_y), (orange_end, arrow_y), stroke="black", stroke_width=1)
-    arrow_line.attribs["marker-start"] = arrow_marker.get_funciri()
-    arrow_line.attribs["marker-end"] = arrow_marker.get_funciri()
+    arrow_line.attribs["marker-start"] = arrow_left.get_funciri()
+    arrow_line.attribs["marker-end"] = arrow_right.get_funciri()
     dwg.add(arrow_line)
 
     dwg.add(dwg.text(
@@ -88,6 +90,6 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         svg2pdf(bytestring=svg_data, write_to=svg_filename.replace(".svg", ".pdf"))
 
 
-# Run it
+# Run the function
 draw_seat_price_illustration()
 
