@@ -2,6 +2,22 @@ import svgwrite
 from cairosvg import svg2png, svg2pdf
 
 
+# New helper function to handle multiline text
+def add_multiline_text(dwg, insert, lines, font_size="11px", line_spacing=14):
+    """
+    Adds multiline text to the drawing.
+    
+    :param dwg: The SVG drawing object.
+    :param insert: Tuple (x, y) for the insertion point.
+    :param lines: List of text lines to be added.
+    :param font_size: The font size of the text.
+    :param line_spacing: The space between lines.
+    """
+    for i, line in enumerate(lines):
+        dy = insert[1] + i * line_spacing
+        dwg.add(dwg.text(line, insert=(insert[0], dy), text_anchor="middle", font_size=font_size))
+
+
 def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     dwg = svgwrite.Drawing(svg_filename, size=("800px", "250px"))
 
@@ -77,8 +93,6 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     ))
 
     # --- Red zone multiline text and arrow ---
-    multiline_font_size = "11px"
-    line_spacing = 14
     text_block_y = bar_y + 60
 
     red_lines = [
@@ -89,9 +103,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     red_offset_x = -40
     red_text_x = red_center + red_offset_x
 
-    for i, line in enumerate(red_lines):
-        dy = text_block_y + i * line_spacing
-        dwg.add(dwg.text(line, insert=(red_text_x, dy), text_anchor="middle", font_size=multiline_font_size))
+    add_multiline_text(dwg, (red_text_x, text_block_y), red_lines)
 
     dwg.add(dwg.line(
         (red_text_x, text_block_y - 5),
@@ -110,9 +122,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     green_offset_x = 40
     green_text_x = green_center + green_offset_x
 
-    for i, line in enumerate(green_lines):
-        dy = text_block_y + i * line_spacing
-        dwg.add(dwg.text(line, insert=(green_text_x, dy), text_anchor="middle", font_size=multiline_font_size))
+    add_multiline_text(dwg, (green_text_x, text_block_y), green_lines)
 
     dwg.add(dwg.line(
         (green_text_x, text_block_y - 5),
