@@ -60,34 +60,40 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         font_size="11px",
     ))
 
-    # Annotation text and arrows BELOW the bar
+    # --- Red zone multiline text and arrow ---
+    multiline_font_size = "11px"
+    line_spacing = 14
+    text_block_y = bar_y + 60
 
-    # Text and arrow for red zone
-    red_text_y = bar_y + 90
-    dwg.add(dwg.text(
-        "Zona en la que perder 10.000 votos costaría un escaño",
-        insert=(red_center, red_text_y),
-        text_anchor="middle",
-        font_size="11px",
-    ))
+    red_lines = [
+        "Zona en la que",
+        "perder 10.000 votos",
+        "costaría un escaño",
+    ]
+    for i, line in enumerate(red_lines):
+        dy = text_block_y + i * line_spacing
+        dwg.add(dwg.text(line, insert=(red_center, dy), text_anchor="middle", font_size=multiline_font_size))
+
     dwg.add(dwg.line(
-        (red_center, red_text_y - 5),
+        (red_center, text_block_y + len(red_lines) * line_spacing - 2),
         (red_center, bar_y + bar_height / 2),
         stroke="black",
         stroke_width=1,
         marker_end=arrow_right.get_funciri()
     ))
 
-    # Text and arrow for green zone
-    green_text_y = bar_y + 110
-    dwg.add(dwg.text(
-        "Zona en la que ganar 10.000 votos valdría un escaño",
-        insert=(green_center, green_text_y),
-        text_anchor="middle",
-        font_size="11px",
-    ))
+    # --- Green zone multiline text and arrow ---
+    green_lines = [
+        "Zona en la que",
+        "ganar 10.000 votos",
+        "valdría un escaño",
+    ]
+    for i, line in enumerate(green_lines):
+        dy = text_block_y + i * line_spacing
+        dwg.add(dwg.text(line, insert=(green_center, dy), text_anchor="middle", font_size=multiline_font_size))
+
     dwg.add(dwg.line(
-        (green_center, green_text_y - 5),
+        (green_center, text_block_y + len(green_lines) * line_spacing - 2),
         (green_center, bar_y + bar_height / 2),
         stroke="black",
         stroke_width=1,
