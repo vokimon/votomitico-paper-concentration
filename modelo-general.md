@@ -42,7 +42,7 @@ que va desde una asignación total de los votos del bloque a A
 hasta una asignación total a B.
 
 ![
-Espacio de trasvases y evolución de los cocientes.
+Evolución de los cocientes en el espacio de trasvases entre las candidaturas A y B.
 ](figures/transferspace.pdf){#fig:transferspace}
 
 Si llamamos $V_{ab}$ a la suma de votos de A y B en el escenario inicial,
@@ -129,12 +129,12 @@ Las mesetas en violeta donde el precio lo determina Pmax.
 Los valles en amarillo donde el precio lo determina Pmin.
 Las pendientes donde lo determinan sucesivos cocientes de A (crecientes en azul)
 y B (decrecientes en rojo).
-](figures/transferspace-detail.pdf){#fig:transferspace-detail}
+](figures/transferspace-price-third.pdf){#fig:transferspace-price-third}
 
 ![
 Ejemplo en el que _Pmax_ y _Pmin_ estan fijados por _Vab/Eab_ y _Vab/(Eab+1)_.
 Que fije _Pmin_ es necesario para que el trasvase no suponga cesiones a terceros.
-](figures/transferspace-unlimited.pdf){#fig:transferspace-unlimited}
+](figures/transferspace-price-direct.pdf){#fig:transferspace-price-direct}
 
 En el modelo aproximado, se asumió que,
 después de un trasvase, el precio quedaba fijo.
@@ -152,7 +152,7 @@ apoyándonos en el _teorema de la repetición de resultados_
 1. **Escenario de concentración total en B**  
     Cuando $V_a = 0$, el precio comienza, 
     marcado por el cociente $P_{max}$,
-    representado en violeta en la figura \ref{fig:transferspace-detail}.
+    representado en violeta en la figura \ref{fig:transferspace-price-third}.
 
 2. **Cruce con el cociente $\frac{V_b}{E_{ab}}$ de B**  
     Este cociente está representado en rojo en la figura,
@@ -176,7 +176,7 @@ Esta descripción es compatible con el caso
 en que $P_{min} < \frac{V_{ab}}{E_{ab}+1}$,
 y por tanto $P_{\min} = \frac{V_{ab}}{E_{ab}+1}$.
 En este caso, el tercer punto y el cuarto coinciden en un único cruce,
-como pasa en la figura \ref{fig:transferspace-direct},
+como pasa en la figura \ref{fig:transferspace-price-direct},
 y se produce una transferencia directa de escaño de B a A,
 sin pasar por D.
 
@@ -215,7 +215,7 @@ Estas zonas es donde el escaño en disputa se lo lleva D, un tercero,
 y el bloque A-B lo pierde.
 
 Esto divide el espacio de trasvases
-como ilustra la figura \ref{fig:transferspace-seat-leak},
+como ilustra la figura \ref{fig:transferspace-seat-third},
 en dos tipos de zonas:
 Zonas donde el resultado conjunto es pleno,
 separadas por zonas,
@@ -240,7 +240,7 @@ Para pasar de una candidatura a otra,
 el escaño pasa antes por un tercero.
 Se alternan zonas de resultado pleno con zonas
 en las que se pierde un escaño.
-](figures/transferspace-seat-leak.pdf){#fig:transferspace-seat-leak}
+](figures/transferspace-seat-third.pdf){#fig:transferspace-seat-third}
 
 Esto concuerda con el patrón cíclico observado empíricamente.
 El otro patrón observado empíricamente,
@@ -249,6 +249,7 @@ $P_{min} = \frac{V_{ab}}{E_{ab}+1}$.
 Es decir, cuando juntando todos los votos
 de A y B, el primer cociente excluido
 es el de esta unión.
+El resultado se ilustra en la figura \ref{fig:transferspace-seat-direct}.
 
 ![
 Escenario de trasvase directo entre A y B,
@@ -256,7 +257,7 @@ cuando Pmin es Vab/(Eab+1).
 No es un espacio necesariamente favorable.
 Quiere decir que aunque sumen todos los restos,
 siempre quedarían a las puertas del siguiente escaño.
-](figures/transferspace-direct.pdf){#fig:transferspace-direct}
+](figures/transferspace-seat-direct.pdf){#fig:transferspace-seat-direct}
 
 
 ## Análisis probabilístico
