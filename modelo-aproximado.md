@@ -89,7 +89,7 @@ Las encuesta modelan el voto a cada candidatura como una distribución normal.
     - Probabilidad cruzada entre emisor y receptor
     - La mitad de la zona es de no cambio
     - Las zonas de perdida son iguales
-- Emulación de los resultados empíricos
+- Comparación con los resultados empíricos
     - Escenario inicial como punto en el cuadro de restos combinados
     - Trasvase como movimiento diagonal +-(+N,-N)
     - Bordes circulares, cuando los cruzamos cambia el reparto
@@ -183,7 +183,7 @@ y pasa a fijarlo la que ha crecido.
 
 Cuando la candidatura que recibe votos es la que fija el precio de corte,
 el precio estará augmentando, y, en algún momento,
-alguno de los coeficientes mayores pasarán a ser menor
+alguno de los cocientes mayores pasarán a ser menor
 y cederle el escaño.
 
 > TODO: Hemos demostrado que eso no pasará antes de trasvasar $P_d$ votos?

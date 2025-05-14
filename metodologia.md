@@ -3,9 +3,9 @@
 ## Variación controlada
 
 La **variación controlada** es una metodología
-que usamos de forma transversal en esta investigación
-para comprender cómo un cambio en el escenario electoral
-afecta a los resultados.
+transversal en esta investigación
+para comprender cómo los cambios en el escenario electoral
+afectan a los resultados.
 
 Esta metodología se inspira en principios generales tomados de
 la Teoría de Juegos [@Cheng2020],
@@ -13,7 +13,7 @@ simulación[@Tekin2004],
 optimización [@Barton2002] y
 teoría de sistemas [@Kleijnen2008].
 
-La metodologia plantea estos tres pasos:
+La metodologia sigue estos tres pasos:
 
 - **Situación inicial o de referencia**:
   Se supone un estado inicial del sistema.
@@ -37,13 +37,13 @@ Calculamos el nuevo resultado
 y vemos que, en comparación con el resultado original,
 C's ha perdido un escaño que ha ganado Iniciativa.
 
-Este ejemplo corresponde con un análisis de **caja blanca**,
+Este ejemplo corresponde a un análisis de **caja blanca**,
 donde conocemos la situación inicial.
 Este enfoque es útil para estudios a posteriori como sería
 un anàlisis periodístico post-electoral.
 
 Más interesantes y complejos son los casos de **caja gris**.
-Estos son aquellos en los que no conocemos con certeza,
+Estos se dan cuando no conocemos con certeza,
 la situación de referencia.
 Los llamamos de caja gris y no negra porque,
 aunque no sepamos cuál será la situacion inicial,
@@ -61,7 +61,8 @@ Por eso, formularemos las _hipotesis de cambio_
 considerando un grupo de votantes de un determinado perfil
 que tomarán coherentemente la misma decisión de cambio de voto.
 
-Podemos incorporar el tamaño del grupo en el enunciado del problema
+Podemos incorporar el tamaño del grupo
+en el enunciado del problema
 de dos formas complementarias:
 
 - _¿Cómo un grupo de N personas, que
@@ -74,8 +75,8 @@ para que cambie el resultado (con una cierta probabilidad)?_
 
 ## Procedimiento
 
-La investigación se ha desarrollado en cuatro fases,
-cada una de las cuales ha refinado y profundizado progresivamente
+La investigación se ha desarrollado en cuatro fases.
+Cada una refina y profundiza progresivamente
 en el comportamiento del sistema D'Hondt
 cuando se realizan trasvases de votos entre dos candidaturas.
 

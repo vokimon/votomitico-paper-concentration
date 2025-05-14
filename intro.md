@@ -24,9 +24,9 @@ pueden inducir al electorado a estrategias contrarias a su intención.
 
 Este artículo en concreto se centra,
 en el **dilema de la concentración del voto en los mayoritarios**,
-dentro de un contexto de **lógica de bloques**.
+dentro de un contexto de **lógica de bloques**,
 aunque el marco teórico que se establece
-tendría aplicación en otros dilemas y contextos
+tendría aplicación y utilidad en otros dilemas y contextos
 donde las mecánicas del sistema D'Hondt tengan influencia.
 
 
@@ -139,7 +139,7 @@ que D'Hondt genere un beneficio desproporcionado a los grandes.
 A esto, se suman casos recientes en diversas convocatorias en España,
 donde un trasvase de voto hacia el mayoritario,
 no solo no ha tenido el efecto esperado,
-sino que han resultado en un peor resultado para el bloque en conjunto[^casoreal].
+sino que han resultado en un peor resultado para el bloque en conjunto[^caso-real].
 
 A la luz de estos precedentes, se evidencia la necesidad
 de realizar un análisis más sistemático sobre este asunto.
@@ -150,7 +150,7 @@ Es así.
 Lo que se examina es si tal beneficio puede ser explotable
 para que el voto personal sea más poderoso.
 
-[^casoreal]: TODO: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
+[^caso-real]: TODO: Ejemplo real: Elecciones generales de xxx de 20xx en Barcelona.
     Muchos votantes de ROJOS respondieron al llamamiento de PROGRES
     para concentrar el voto y frenar el ascenso de la extrema derecha.
     Así, ROJOS se quedó a pocos votos de conseguir un escaño más,
