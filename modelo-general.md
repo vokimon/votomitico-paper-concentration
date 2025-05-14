@@ -1,76 +1,95 @@
 # Análisis con un modelo general
 
+El modelo previo de trasvases de votos
+ha demostrado ser útil para explicar
+los resultados empíricos observados en simulaciones.
+
+Sin embargo, al tratarse de una aproximación,
+no ofrece garantías sobre su aplicabilidad en todos los casos.
+Asume que los trasvases no alteran el precio,
+y conocemos casos en los que esto no se da.
+
+Este capítulo presenta un modelo general,
+aplicable a cualquier escenario de trasvase entre dos candidaturas,
+incluidos aquellos en los que el precio de corte se ve alterado.
+
 ## Objetivo
 
-Durante esta fase,
-se desarrollará un modelo
-para los trasvases de votos entre candidaturas
-de aplicación general
-sin la aproximación del anterior modelo
-que consideraba el precio de corte constante
-durante los trasvases.
+Para construir el nuevo modelo de aplicación general,
+se seguirán los siguientes pasos:
 
-Para ello, limitaremos el espacio inabarcable de escenarios,
-a un espacio limitado de escenarios
-que solo incluya aquellos a los que se pueda llegar,
-desde un un escenario inicial de referencia,
-haciendo trasvases de votos entre dos candidaturas A y B.
-Caracterizaremos el espacio parametrizándolo
-a partir de un escenario singular,
-y despues estudiaremos cómo evoluciona
-el resultado según nos movemos en ese espacio.
-Finalmente, se establecerá un modelo probabilístico
-para acabar determinando en qué términos un trasvase
-puede considerarse estratégicamente positivo, negativo o neutro.
+1. Delimitar el espacio de escenarios posibles solo a aquellos que son alcanzables mediante trasvases de votos.
+2. Identificar los parámetros mínimos del espacio que determinan como cambian los resultados al movernos en él.
+3. Estudiar la evolución del precio a lo largo del espacio y sus consecuencias en el reparto de escaños.
+4. Incorporar la incertidumbre a través de un análisis probabilístico.
+5. Valorar las oportunidades de voto estratégico a partir de los resultados obtenidos.
 
-## Espacio de trasvases
+## El Espacio de Trasvases
 
-Dado un escenario inicial, incierto pero fijo,
-consideremos las candidaturas A y B entre las que trasvasar votos.
-Consideremos la familia de escenarios alternativos,
-desde un trasvase total a A a un trasvase total a B
-conformando un espacio contiguo 1D o un segmento de escenarios.
+Dado un escenario inicial,
+concreto pero incierto,
+consideramos el conjunto de escenarios
+resultantes de hacer
+trasvases de votos
+entre las candidaturas A y B,
+manteniendo inalterados
+los votos del resto de candidaturas.
+
+El espacio de trasvases resultante,
+representado en la figura \ref{fig:transferspace},
+conforma un segmento unidimensional de escenarios,
+que va desde una asignación total de los votos del bloque a A
+hasta una asignación total a B.
 
 ![
 Espacio de trasvases y evolución de los cocientes.
-Los cocientes de A crecen, los de B decrecen,
-y los del resto de candidaturas, por ejemplo,
-_Pmax_ y _Pmin_, son constantes.
-Las líneas grises permiten comprovar que los cocientes
-_Va/j_ y _Vb/k_ coinciden en _Vab/(k+j)_.
-Esos puntos de intersección con los cocientes
-dividen la línea Vab/k en k segmentos iguales.
 ](figures/transferspace.pdf){#fig:transferspace}
 
-En este espacio, representado en la figura \ref{fig:transferspace},
-los votos al resto de candidaturas se mantienen constantes
-y, por tanto, sus coeficientes.
-Los votos de A, $V_a$ crecen linealmente desde 0 a $V_{ab} = V_a^0 +V_b^0$,
-siendo $V_a^0$ y $V_b^0$ los votos en el escenario inicial.
-Los votos de B decrecen linealmente de forma complementaria, de $V_{ab}$ a 0.
-Los coeficientes $C_a^j$ evolucionan proporcionalmente a $V_a$,
-y lo mismo pasa con $C_b^j$ con $V_b$.
+Si llamamos $V_{ab}$ a la suma de votos de A y B en el escenario inicial,
+los votos de A, $V_a$, crecen linealmente, a lo largo del espacio,
+de 0 a $V_{ab}$,
+y los de B, $V_b$, decrecen de forma complementaria, de $V_{ab}$ a 0.
 
-Remarcamos varias cosas:
+Los cocientes de A, $C_a^j = V_a / j$, en azul en la figura,
+y de B, $C_b^k = V_b / k$, en rojo,
+evolucionan proporcionalmente a sus respectivos votos.
 
-- Primero la simetría: Lo que le pasa a A en un lado le pasa a B en el otro.
-- Segundo, las relaciones entre cocientes:
-  Los coeficientes $C_a^j = Va/j$ y  $C_b^k = Vb/k$
-  coinciden en $V_{ab} \over k + j$.
-  Estos puntos de cruce son importantes porque son los puntos
-  donde los coeficientes cambian de orden.
-  Para $V_{ab}/k$, esos puntos de cruce de los coeficientes
-  dividen el espacio de trasvases en $k$ secciones iguales.
+Por otro lado, los cocientes de las demás candidaturas,
+como los cocientes $P_c$ y $P_d$, se mantienen constantes.
+Solo representamos esos dos, porque,
+como se explica más adelante,
+serán los únicos relevantes para el análisis.
 
+Un cruce de dos cocientes en la gráfica
+indica un cambio en su orden relativo.
+Cuando uno de los cocientes implicados en el cruce
+es el que marcaba el precio de corte,
+tras el cruce, el otro pasa a ocupar esa posición,
+y, si el nuevo cociente de corte no tenia escaño
+se lo arrebatará al anterior cociente de corte.
+
+Si el cociente que marca el precio de corte se cruza con otro,
+este último lo reemplaza en esa posición,
+y si no tenía escaño, se lo quitará.
+
+En la figura \ref{fig:transferspace},
+se observa que los cocientes de A y B se cruzan
+en los puntos $C_a^j = C_b^k = \frac{V_{ab}}{j + k}$,
+para cada par $k$ y $j$.
+Los que se producen en el mismo valor,
+digamos, en $\frac{V_{ab}}{k}$,
+dividen el espacio en $k$ segmentos iguales.
 
 ## Escenario de concentración plena
 
-Los escenarios en los extremos del espacio nos van a servir
-para parametrizar el espacio entero.
-Son los de concentración total en uno de los dos partidos.
-Por simetría, ambos son equivalentes, pero para este desarrollo
-nos centraremos en el escenario en el que concentramos todo el voto en B
-($V_a=0$, $V_b = V_{ab}$).
+Para caracterizar el especio de trasvases,
+usaremos los escenarios en los extremos,
+es decir, aquellos de concentración total
+en uno de los dos partidos.
+Debido a la simetría complementaria del espacio de trasvases,
+podemos escoger uno u otro extremo.
+Concretamos el desarrollo utilizando el escenario en el que concentramos
+todo el voto en B ($V_a = 0$, $V_b = V_{ab}$).
 
 El reparto nos dará que:
 
@@ -78,25 +97,25 @@ $$
     V_b = V_{ab} = E_{ab} P_{max} + R_{ab}
 $$
 
-Donde
+Donde:
 
 - $P_{max}$ es el precio de corte en este escenario
 - $E_{ab}$ son los escaños asignados en este escenario
-- $R_{ab}$ los restos que quedan en este escenario
+- $R_{ab}$ son los restos que quedan en este escenario
 
 Dado que B tiene $E_{ab}$ escaños,
-el último cociente asignado de B habrá sido $V_{ab} \over E_{ab}$.
+el último cociente asignado de B habrá sido $\frac{V_{ab}}{E_{ab}}$.
 Para poder entrar, ese cociente debería ser mayor o igual que $P_{max}$.
-De hecho, podría ser $V_{ab} \over E_{ab}$ el que fijara $P_{max}$ o
-el último cociente de una tercera candidatura C y que llamaremos $P_c$.
+De hecho, podría ser $\frac{V_{ab}}{E_{ab}}$ el que fijara $P_{max}$ o
+el último cociente de una tercera candidatura C, que llamaremos $P_c$.
 
-Pasa lo mismo con el precio mínimo $P_{min}$,
-lo puede fijar el primer cociente no escogido de B,
-$V_{ab} \over E_{ab} +1$, o el primer cociente no escogido
+Pasa lo mismo con el precio mínimo $P_{min}$: 
+lo puede fijar el primer cociente no escogido de B, 
+$\frac{V_{ab}}{E_{ab} + 1}$, o el primer cociente no escogido 
 de alguna tercera candidatura D que llamaremos $P_d$.
 
 $$
-{V_{ab} \over E_{ab}} >= P_{max} >= P_{min} >= {V_{ab} \over E_{ab} +1}
+\frac{V_{ab}}{E_{ab}} \geq P_{max} \geq P_{min} \geq \frac{V_{ab}}{E_{ab} + 1}
 $$
 
 ## Evolución del precio
@@ -117,78 +136,102 @@ Ejemplo en el que _Pmax_ y _Pmin_ estan fijados por _Vab/Eab_ y _Vab/(Eab+1)_.
 Que fije _Pmin_ es necesario para que el trasvase no suponga cesiones a terceros.
 ](figures/transferspace-unlimited.pdf){#fig:transferspace-unlimited}
 
-En el modelo aproximado, supusimos que,
+En el modelo aproximado, se asumió que,
 después de un trasvase, el precio quedaba fijo.
-Comprobemos qué evolución tiene y cómo afecta al reparto de escaños.
+Ahora, con el nuevo marco de los espacios de trasvases,
+procederemos a analizar cómo evoluciona el precio
+y cómo afecta al reparto de escaños.
+Usaremos los **cruces entre cocientes** para identificar
+los momentos en los que el orden de los cocientes cambia
+y sus impactos en el precio y en la asignación de escaños.
 
-Partiendo de la situación con el voto concentrado en B,
-a medida que vamos trasvasando votos a A,
-el precio sigue siendo $P_{max}$ hasta que
-al perder votos, el coeficiente $V_b \over E_{ab}$ pasa por debajo.
-Esto sucede cuando $V_a = R_{ab}$.
+Hay cuatro puntos clave, que después extenderemos a todo el espacio,  
+apoyándonos en el _teorema de la repetición de resultados_  
+(ver §\ref{teorema-repeticion-resultados}).
 
-Si el precio es $P_{max}$  en el intérvalo $[0, R_{ab}]$,
-por el teorema de los precios repetidos,
-se repetirá a intérvalos $P_{max}$,
-o más formalmente:
+1. **Escenario de concentración total en B**  
+    Cuando $V_a = 0$, el precio comienza, 
+    marcado por el cociente $P_{max}$,
+    representado en violeta en la figura \ref{fig:transferspace-detail}.
 
-$$
-P(V_a) = P_{max} \quad \text{si} \quad \exists k \in \mathbb{N},\ 
-0 \leq k \leq E_{ab},\ 
-V_a \in [k P_{max},\ k P_{max} + R_{ab}]
-$$
+2. **Cruce con el cociente $\frac{V_b}{E_{ab}}$ de B**  
+    Este cociente está representado en rojo en la figura,
+    y su cruce se produce cuando $V_a = R_{ab}$,
+    es decir, cuando se agotan los restos de B.
+    Como este cociente ya tiene un escaño asignado,
+    no hay cambio en el reparto de escaños.
+    Solo cambia el cociente que marca el precio.
 
-A partir de ese punto, $V_a = kP_{max} + R_{ab}$,
-el precio lo marca el cociente decreciente de B correspondiente,
-en rojo en la figura \ref{fig:transferspace-detail}.
-Esto no supone un cambio en el número de escaños,
-solo un cambio en el orden de asignación de los dos últimos escaños
-que siguen siendo de C y B.
+3. **Cruce con $P_{\min}$**  
+    Este cociente está marcado en amarillo en la figura
+    y su cruce se produce en $V_a = V_{ab} - E_{ab} P_{\min}$.
+    Este cruce implica un traspaso de escaño de B a D.
 
-Aquí pueden pasar dos cosas, dependiendo de qué sea más alto,
-$P_{min}$ o el cociente $V_{ab} \over E_{ab} + 1$.
+4. **Cruce con el cociente $\frac{V_a}{1}$**  
+    Este cociente está marcado en azul en la figura
+    y su cruce se produce en $V_a = P_{\min}$.
+    Este cruce implica un traspaso de escaño de D a A.
 
-Si es más alto el cociente $V_{ab} \over E_{ab} + 1$,
-cuando el precio llega a ese valor,
-B pierde el escaño a favor del siguiente cociente de A,
-$V_a \over k + 1$, que pasa a tener representación.
-Lo que tenemos es un traspaso directo del escaño entre B y A.
-Al ser directo, no habría un cambio en la representación conjunta.
-Ese intercambio de escaño se produciría en $V_a = (k+1) {V_{ab} \over E_{ab} +1}$
-lo que divide el espacio de trasvases en $E_{ab} + 1$ zonas
-de igual tamaño, en las que las candidaturas consiguen complementariamente
-0, 1, ..., $E_{ab}$ escaños, como ejemplifica la figura \ref{fig:transferspace-direct}.
+Esta descripción es compatible con el caso
+en que $P_{min} < \frac{V_{ab}}{E_{ab}+1}$,
+y por tanto $P_{\min} = \frac{V_{ab}}{E_{ab}+1}$.
+En este caso, el tercer punto y el cuarto coinciden en un único cruce,
+como pasa en la figura \ref{fig:transferspace-direct},
+y se produce una transferencia directa de escaño de B a A,
+sin pasar por D.
 
-![
-Escenario de trasvase directo entre A y B,
-cuando Pmin no supera Vab/(Eab+1)
-](figures/transferspace-direct.pdf){#fig:transferspace-direct}
-
-
-Si, en cambio, $P_{min} > { V_{ab} \over E_{ab} +1 }$,
-es este coeficiente el que toma el relevo como precio de corte
-y la candidatura a la que pertenezca le arrebatará el escaño
-al bloque A-B hasta que el cociente creciente de A
-supere ese precio.
-
-Encontrando la intersección de las curbas y aplicando el teorema de repetición,
-obtenemos los intérvalos donde precio es $P_{min} y,
-más importante, el resultado conjunto pierde un escaño.
+Extendiendo estos puntos según indica el
+_teorema de repetición de resultados_,
+los puntos 1 y 2 se repiten cada $P_{max}$
+mientras que los puntos 3 y 4 se repiten cada $P_{min}$.
+Resulta en esta fórmula general, para el precio:
 
 $$
-P(V_a) = P_{min} \quad \text{si} \quad \exists k \in \mathbb{N},\ 
-0 \leq k \leq E_{ab},\ 
-V_a \in [V_{ab} - E_{ab} P_{min} + k P_{min},\ P_{min} + k P_{min}]
+P(V_a) = 
+\begin{cases} 
+P_{max}
+& \text{si } V_a \in \left[
+k P_{max}, R_{ab} +  k P_{max} \right],
+\quad k \in \{0, 1, \dots, E_{ab}\} \\
+\frac{V_{ab} - V_a}{E_{ab} - k}
+& \text{si } V_a \in \left[
+R_{ab} +  k P_{max}, V_{ab} - E_{ab} P_{min} + k P_{min}  \right],
+\quad k \in \{0, 1, \dots, E_{ab}-1\} \\
+P_{min}
+& \text{si } V_a \in \left[
+V_{ab} - E_{ab} P_{min} + k P_{min},  P_{min} + k P_{min}
+\right],
+\quad k \in \{0, 1, \dots, E_{ab}-1\} \\
+\frac{V_a}{k+1}
+& \text{si } V_a \in \left[
+P_{min} + k P_{min}, P_{max} + k P_{max}
+\right],
+\quad k \in \{0, 1, \dots, E_{ab}-1 \}
+\end{cases}
 $$
 
-Esto nos divide el espació,
-como muestra la figura \ref{fig:transferspace-seat-leak},
-en $E_{ab}+1$ zonas
-de tamaño $V_{ab} - E_{ab} P_{min}$.
-en las que como antes la representación es máxima,
-separadas por $E_{ab}$ zonas
-de tamaño $(E_{ab}+1) P_{min} - V_{ab}$
-en las que otra candidatura se lleva el escaño.
+Lo interesante son las zonas donde $P_{min}$ marca el precio.
+Estas zonas es donde el escaño en disputa se lo lleva D, un tercero,
+y el bloque A-B lo pierde.
+
+Esto divide el espacio de trasvases
+como ilustra la figura \ref{fig:transferspace-seat-leak},
+en dos tipos de zonas:
+Zonas donde el resultado conjunto es pleno,
+separadas por zonas,
+donde una tercera formación les resta un escaño.
+
+El tamaño de las zonas de resultado pleno es:
+
+$$
+    V_{ab} - E_{ab} P_{min}
+$$
+
+Y, el de las zonas de resultado menor:
+
+$$
+    (E_{ab}+1) P_{min} - V_{ab}
+$$
 
 ![
 Escenario de trasvase con cesiones a un tercero.
@@ -199,6 +242,22 @@ Se alternan zonas de resultado pleno con zonas
 en las que se pierde un escaño.
 ](figures/transferspace-seat-leak.pdf){#fig:transferspace-seat-leak}
 
+Esto concuerda con el patrón cíclico observado empíricamente.
+El otro patrón observado empíricamente,
+sin cesión a un tercero, se da cuando
+$P_{min} = \frac{V_{ab}}{E_{ab}+1}$.
+Es decir, cuando juntando todos los votos
+de A y B, el primer cociente excluido
+es el de esta unión.
+
+![
+Escenario de trasvase directo entre A y B,
+cuando Pmin es Vab/(Eab+1).
+No es un espacio necesariamente favorable.
+Quiere decir que aunque sumen todos los restos,
+siempre quedarían a las puertas del siguiente escaño.
+](figures/transferspace-direct.pdf){#fig:transferspace-direct}
+
 
 ## Análisis probabilístico
 
@@ -208,7 +267,7 @@ en las que se pierde un escaño.
 - Cambio: Del estado inicial al post cambio
     - Ganancia: estar en $E_{ab}-1$ y pasar a $E_{ab}$
     - Perdida: estar en $E_{ab}$ y pasar a $E_{ab}-1$
-    - Status quo:  $E_{ab}$ -> $E_{ab}$ o $E_{ab}-1$ -> $E_{ab}-1$
+    - Status quo:  $E_{ab} \rightarrow E_{ab}$ o $E_{ab}-1 \rightarrow E_{ab}-1$
 
 ## Discusión
 

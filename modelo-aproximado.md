@@ -29,34 +29,57 @@ y los efectos que puede tener en los resultados obtenidos.
 Según el método de variación controlada se plantea:
 ¿Cuál es el efecto de añadir o quitar N votos a una candidatura?
 
-Dividiremos el trasvase en dos trasvases,
-uno que trasvasa la parte divisible por $P_c$,
-y otro que trasvasa la parte fraccional.
+Se puede partir un trasvase de un número arbitrario de N votos,
+en dos trasvases sucesivos,
+uno de la parte exactamente divisible por $P_{max}$,
+y otro trasvase del resto.
 
 Por el teorema de resultados repetidos,
-cada $P_c$ votos trasvasados de A a B,
-se traspasa un escaño, y tanto los restos como el precio de corte se mantienen.
-Esto resuelve la parte divisible por $P_c$.
+el trasvase divisible por $P_{max}$
+nos lleva a una situación donde
+el mismo precio genera los mismos restos,
+los mismos escaños para terceras candidaturas,
+y un trasvase de escaños de A a B
+que conserva el resultado conjunto.
 
-Quedaría por saber qué pasa con un trasvase de una fracción del precio de escaño
-$0 <= N < P_c$.
-Para eso, la clave es en qué parte de los restos se encuentra
-cada candidatura en el escenario inicial.
-La candidatura receptora, conseguira un escaño más
-si sus restos estan a N o menos de sumar $P_c$.
-Al mismo tiempo, la candidatura emisora, perderá un escaño
-si tiene menos de N votos de restos.
+Quedaría por saber qué pasa con un trasvase de N votos
+donde N sea una fracción del precio de escaño
+$0 <= N < P_{max}$.
+Lo que pase va a depender de qué restos tengan las candidaturas emisora y receptora
+en el escenario de partida.
+Si la emisora tiene restos menores que $N$, perderá un escaño.
+Si la receptora tiene restos mayores que $P_{max} - R$ ganará un escaño.
 
-Este tipo de análisis lo podemos observar a posteriori,
+![
+Zonas en los restos en las que un cambio de votos menor que P,
+pueden producir cambios en el resultado de una candidatura.
+](figures/critical-zones.pdf)
+
+Ambas cosas pueden producirse o no de forma independiente:
+
++------------------+---------------+
+|                  | **Receptora** |
++----------+-------+-------+-------+
+|          |       |  **0**| **+1**|
++==========+======:+======:+======:+
+|Emisora   |  **0**|      0|     +1|
+|          +-------+-------+-------+
+|          | **-1**|     -1|      0|
++----------+-------+-------+-------+
+
+
+Este tipo de análisis lo podemos realizar a posteriori,
 pero, en un análisis preelectoral no podemos saber, solo estimar,
 cuáles son los restos de cada formación.
 Para eso, es necesario realizar un análisis probabilístico.
 
 ## Ditribución probabilística de los restos
 
-La mejor información de la que disponemos sobre un resultado electoral
-que aún no se ha producido son las encuestas preelectorales [@alaminos2023metodos].
-Las encuesta modelan el voto a cada candidatura como una distribución normal.
+Antes de que se produzca un resultado electoral,
+la información de la que disponemos
+son las encuestas [@alaminos2023metodos].
+Las encuesta modelan el voto a cada candidatura como una distribución normal
+definida por una esperanza y una desviación estandard.
 
 
 
@@ -110,42 +133,6 @@ Las encuesta modelan el voto a cada candidatura como una distribución normal.
 
 
 **LO QUE QUEDA DE ESTE APARTADO ES BORRADOR A REESCRIBIR PORQUE SE MOVIERON COSAS FUERA**
-
-
-
-## Transferencia entre una candidatura y la abstención
-
-Como paso intermedio a entender la transferencia de votos entre candidaturas,
-en este apartado, abordamos un caso más sencillo:
-trasferencia entre una candidatura y la abstención.
-Esto es, que, respecto a un escenario de referencia,
-solo cambian los votos de la candidatura bajo estudio,
-en positivo o en negativo,
-pero se mantienen los del resto de candidaturas.
-
-Primero vamos a evaluar un caso de **caja blanca**,
-en el que miramos cuál es el efecto
-dependiendo de la situación inicial
-y la cantidad concreta de votos que se mueven.
-
-Despues pasaremos a un análisis de **caja gris**,
-en el que la situación inicial en el que partimos de una situación incierta,
-con un cierto 
-
-
-
-El objetivo final sería evaluar la transferencia de votos entre candidaturas,
-pero en un primer nivel transferencias contra la abstención.
-Eso implica que solo la candidatura considerada modifica sus votos,
-manteniendo el resto de candidaturas los suyos.
-
-Haremos también la suposición para toda la fase 2,
-de que el trasvase de votos que vamos a simular
-no implica cambios en el precio, 
-es decir, supondremos que el precio de corte no se ve alterado con el cambio.
-Sabemos que eso no es cierto, por lo que hemos observado empíricamente.
-
-
 
 ## Probabilidad de cambios en la representación
 
