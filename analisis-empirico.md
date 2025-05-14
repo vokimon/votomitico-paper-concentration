@@ -57,7 +57,7 @@ como la versión online[^revote].
     era el ámbito en el que podíamos intervenir.
 [^2011]:
     Los datos históricos limitan hasta 2011
-    porque fué en ese momento
+    porque fue en ese momento
     cuando se realizaron estos experimentos.
 [^envote]: https://github.com/vokimon/envote
 [^revote]: https://github.com/vokimon/revote
@@ -70,8 +70,7 @@ los escaños conjuntos de ambos partidos aumentaran.
 Sin embargo, la simulación nos sorprendió,
 ya que los resultados no siguieron este patrón esperado.
 
-El simulador, que incluye los datos históricos y sintéticos,  
-está disponible en votomitico.org.El simulador, que incluye los datos históricos y sintéticos,  
+El simulador, que incluye los datos históricos y sintéticos,
 está disponible en votomitico.org.
 
 ## Patrones Observados

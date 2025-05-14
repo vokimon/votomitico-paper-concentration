@@ -16,9 +16,9 @@ sin ejecutar el algoritmo.
 El algoritmo de reparto consta de dos partes:
 La **generación de cocientes**
 y la posterior **selección ordenada**
-de los coeficientes[^coeficientes_entrelazados].
+de los cocientes[^cocientes_entrelazados].
 
-[^coeficientes_entrelazados]:
+[^cocientes_entrelazados]:
     Separamos estas dos partes para facilitar la conceptualización,
     pero, el algoritmo en su versión típica las entrelaza
     para minimizar el número de operaciones a realizar.
@@ -50,21 +50,21 @@ Donde:
 - $K$ es el número de candidaturas
 - $V_i$ son los votos que obtuvo la candidatura $i$
 
-La **selección ordenada** ordena los coeficientes
+La **selección ordenada** ordena los cocientes
 y escoge, de mayor a menor, tantos como escaños disponibles $E$.
 Una candidatura obtendrá tantos escaños
 como cocientes derivados de sus votos se hayan escogido.
 
-¿Qué significan estos coeficientes?
+¿Qué significan estos cocientes?
 Pensemos el reparto como un intercambio de escaños por votos.
 Estableceríamos un precio en votos por cada escaño.
-Con esa perspectiva, se puede entender el coeficiente $V_i / j$
+Con esa perspectiva, se puede entender el cociente $V_i / j$
 como el precio máximo con el cual
 la candidatura $i$ podría conseguir $j$ escaños,
 como ilustra la figura \ref{seat-costs}.
 
 
-![Interpretando el significado de los coeficientes:
+![Interpretando el significado de los cocientes:
 Con _Vi_ votos, si el precio fuera _Vi/3_,
 la candidatura _i_ podria comprar 3 escaños.
 Si el precio fuera algo superior,
@@ -72,29 +72,29 @@ no tendriá votos suficientes para un tercero
 y se quedaría con 2.
 ](figures/seat-costs.pdf){#seat-costs}
 
-Cuando seleccionamos estos coeficientes, de mayor a menor,
+Cuando seleccionamos estos cocientes, de mayor a menor,
 lo que estamos haciendo es bajar el precio de forma controlada,
-permitiendo un escaño más con cada coeficiente,
+permitiendo un escaño más con cada cociente,
 hasta que todos los escaños disponibles se han repartido.
 Podemos considerarlo como una **subasta a la baja**.
 
-El último cociente escogido, fija **precio de corte** ($P_c$).
+El último cociente escogido, fija **precio de corte** ($P_{max}$).
 Este parámetro es clave
 porque condensa el resultado del algoritmo en un solo valor.
 Permite calcular, sin volver a ejecutar el algoritmo,
 el resultado, es decir, los escaños de cada candidatura ($E_i$).
 
 $$
-Ei = \left\lfloor{ Vi \over Pc } \right\rfloor   \quad , \quad \forall{i}
+Ei = \left\lfloor{ Vi \over P_{max} } \right\rfloor   \quad , \quad \forall{i}
 $$
 
 O, expresado de otra manera:
 
-$$ V_i = E_i \cdot P_c + R_i   \quad , \quad \forall{i} $$ 
+$$ V_i = E_i \cdot P_{max} + R_i   \quad , \quad \forall{i} $$ 
 
 ![
 Relación entre votos, escaños y restos tras aplicar el precio de corte.
-_Vi = Ei  · Pc + Ri_](figures/seats-and-remainder.pdf){#seat-and-remainder}
+_Vi = Ei  · Pmax + Ri_](figures/seats-and-remainder.pdf){#seat-and-remainder}
 
 Donde aparece un nuevo e importante parámetro interno:
 los **restos** $Ri$,
@@ -106,13 +106,13 @@ por construcción,
 los restos de cada candidatura
 están acotados por el precio de corte:
 
-$$ 0 <= R_i < P_c    \quad , \quad \forall{i} $$
+$$ 0 <= R_i < P_{max}    \quad , \quad \forall{i} $$
 
-Otro parámetro significativo es el **primer cociente no escogido**, $P_d$.
-Por definición, es el siguiente cociente menor que $P_c$.
-Eso quiere decir que cualquier precio $P$ tal que $P_d < P <= P_c$,
+Otro parámetro significativo es el **primer cociente no escogido**, $P_{min}$.
+Por definición, es el siguiente cociente menor que $P_{max}$.
+Eso quiere decir que cualquier precio $P$ tal que $P_{min} < P <= P_{max}$,
 no incorporaría ningún escaño más al resultado,
-y, por lo tanto, repartiría los mismos escaños que $P_c$.
+y, por lo tanto, repartiría los mismos escaños que $P_{max}$.
 
 De forma general, un reparto por $P$ es exacto si
 Se reparten justo los escaños disponibles,
@@ -123,7 +123,7 @@ $$
     E = \sum_i{E_i} \quad \and \quad 0 <= R_i < P \forall i
 $$
 
-El precio de corte $P_c$ es de estos, el mayor y el que asegura, además,
+El precio de corte $P_{max}$ es de estos, el mayor y el que asegura, además,
 que haya al menos una candidatura sin restos.
 Formalmente, sabemos que un precio exacto es tambien el de corte si:
 
@@ -138,17 +138,60 @@ A continuación, se detallan una serie de conclusiones,
 que el formalismo anterior permite extraer,
 en una primera mirada.
 
+### Cotas y estimación para el precio del escaño
+
+Las relaciones entre los parámetros también
+nos permiten acotar y estimar el precio de corte,
+lo que puede ser muy útil para el análisis.
+
+Considerando la suma de votos a candidaturas:
+
+$$
+    V = \sum_i V_i = P_{max} E + \sum_i R_i
+$$
+
+$$
+    P_{max} = {V - \sum_i{R_i} \over E}
+$$
+
+Como $R_i$ está acotado, también lo está $P_{max}$:
+
+$$
+    {V \over E+K} < P_{max} <= {V \over E}
+$$
+
+Donde, recordemos, K es el número de candidaturas.
+
+Si consideramos una esperanza para los restos,
+podemos obtener una buena estimación del precio:
+
+$$
+\displaystyle \mathbb {E} [P_{max}] = {V \over E + K \mathbb{E}[R_i]}
+$$
+
+> TODO: Hacer esta estimación a partir de datos reales de diferentes convocatorias.
+
+> TODO: Efectos del umbral fijo en los restos
+
+> TODO: Cotas y estimaciones permiten descartar el efecto del umbral fijo
+> Podemos descartar umbral del 3% si la suma de escaños y partidos supera 33.
+> Podemos descartar umbral del 5% si la suma de escaños y partidos supera 50.
+
+> TODO: Si el termino normal esta en el denominador,
+> el precio una [distribución Gausiana inversa
+> ](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)
+
 ### Teorema de la inutilidad de los restos
 
 **Teorema:**
 Dado un escenario inicial,
 donde para una formación $i$,
-$V_i = E_i P_c + R_i$,
+$V_i = E_i P_{max} + R_i$,
 obtendremos el mismo reparto de escaños,
 si modificamos sus votos tal que 
 
 $$
--R_i <= \Delta V_i < P_c - R_i
+-R_i <= \Delta V_i < P_{max} - R_i
 $$
 
 
@@ -157,13 +200,13 @@ $$
 Para obtener el mismo resultado,
 si expresamos los nuevos votos como,
 $$
-V_i' = E_i P_c + R_i'
+V_i' = E_i P_{max} + R_i'
 $$
 
 Se tendría que cumplir la restricción sobre los restos
 que requiere un reparto exacto:
 $$
-0 <= R_i' < P_c
+0 <= R_i' < P_{max}
 $$
 
 Tenemos que:
@@ -171,61 +214,70 @@ $$
 \Delta V_i = V_i' - V_i = R_i' - R_i \\
 $$
 $$
--R_i <= \Delta V_i = R_i' - R_i < P_c - R_i \\
+-R_i <= \Delta V_i = R_i' - R_i < P_{max} - R_i \\
 $$
 $$
-0 <= R_i' < P_c  \quad q.e.d.
+0 <= R_i' < P_{max}  \quad q.e.d.
 $$
 
 **Observaciones**
 
-Esto no quiere decir que $P_c$ siga siendo el precio de corte.
-Normalmente, sí lo será,
-pero si añadimos restos a la candidatura que marca el precio de corte,
-y por tanto $R_i=0$,
-la condición para ser precio de corte dejará de ser cierta,
-y simplemente $P_c$ será ahora un precio de reparto exacto.
+Esto no quiere decir que $P_{max}$ siga siendo el precio de corte tras el trasvase.
+Normalmente, sí lo será.
+Dejará de serlo si la candidatura que modificamos
+es la única que, originalmente, tuviera $R_i=0$.
+En ese caso, la modificación que podemos hacer es añadir restos,
+pero dejarían de ser cero, y no se cumpliría la condición
+para que el antiguo $P_{max}$ siguiera siendo el precio de corte.
+Seguiría siendo un precio de reparto exacto
+pero no el de corte.
 
 **Discusión:**
 
 Una intuición que podemos extraer de aquí es que
 los restos, o votos inútiles, funcionan de forma
 muy parecida, en formaciones grandes y pequeñas.
-Todas pueden acomular hasta $P_c$ votos
-sin que haya cambio en la respresentación.
+Todas pueden acumilar hasta $P_{max}$ votos
+sin que haya cambio en la representación.
 
 Es importante tener en cuenta que
 la operación de modificar los restos
 tiene sentido para entender como se comporta el sistema
-o para hacer análisis a posteriori,
-puesto que a priori no conocemos el valor exacto de $R_i$,
+o para hacer análisis a posteriori.
+A priori no conocemos el valor exacto de $R_i$,
+de cada candidatura
 para poder acotar como variamos los votos.
 
-### Teorema de repetición de resultados
+### Teorema de repetición de resultados {#teorema-repeticion-resultados}
 
 **Teorema:**
 Dado un escenario inicial de referencia,
-con un precio de corte $P_c$,
-trasvasar un número de votos igual a $P_c$ entre dos candidaturas,
+en el cual $P$ es precio exacto,
+trasvasar un número de votos igual a $P$ entre dos candidaturas,
 emisora (A) y receptora (B),
-resulta en un escenario con:
+resulta en un escenario donde $P$:
 
-- el mismo precio de corte,
-- los mismos restos para todas las candidaturas,
-- un escaño trasvasado de A a B, manteniendo el resultado conjunto
-- los mismos escaños para el resto de candidaturas.
+- sigue siendo precio exacto
+- generando los mismos restos para todas las candidaturas,
+- un escaño es trasvasado de A a B, manteniendo el resultado conjunto
+- reparte los mismos escaños para el resto de candidaturas.
 
 **Demostración:**
 
 $$
-V_a' = V_a - P_c = P_c E_a + R_a - P_c = P_c (E_a-1) + R_a \Rightarrow E_a' = E_a-1
+V_a' = V_a - P = P E_a + R_a - P = P (E_a-1) + R_a \Rightarrow E_a' = E_a-1
 $$
 $$
-V_b' = V_b + P_c = P_c E_b + R_b + P_c = P_c (E_b+1) + R_b \Rightarrow E_b' = E_b+1
+V_b' = V_b + P = P E_b + R_b + P = P (E_b+1) + R_b \Rightarrow E_b' = E_b+1
 $$
 
 Al mantenerse los mismos restos y la suma de escaños,
-$P_c$ sigue generando un reparto exacto.
+$P$ sigue generando un reparto exacto.
+
+**Observaciones:**
+
+No es necesario que $P$ sea $P_{max}$,
+solo basta que sea un _precio de reparto exacto_.
 
 **Colorario 1:**
 
@@ -263,67 +315,22 @@ Si se trasvasan más votos
 que los restos que dispone el emisor,
 podría perder uno de los escaños de los que dispone.
 
-### Cotas y estimación para el precio del escaño
-
-Las relaciones entre los parámetros también
-nos permiten acotar y estimar el precio de corte,
-lo que puede ser muy útil para el análisis.
-
-Considerando la suma de votos a candidaturas:
-
-$$
-    V = \sum_i V_i = P_c E + \sum_i R_i
-$$
-
-$$
-    P_c = {V - \sum_i{R_i} \over E}
-$$
-
-Como $R_i$ está acotado, también lo está $P_c$:
-
-$$
-    {V \over E+K} < P_c <= {V \over E}
-$$
-
-Donde, recordemos, K es el número de candidaturas.
-
-Si consideramos una esperanza para los restos,
-podemos obtener una buena estimación del precio:
-
-$$
-\displaystyle \mathbb {E} [P_c] = {V \over E + K \mathbb{E}[R_i]}
-$$
-
-> TODO: Hacer esta estimación a partir de datos reales de diferentes convocatorias.
-
-> TODO: Efectos del umbral fijo en los restos
-
-> TODO: Cotas y estimaciones permiten descartar el efecto del umbral fijo
-> Podemos descartar umbral del 3% si la suma de escaños y partidos supera 33.
-> Podemos descartar umbral del 5% si la suma de escaños y partidos supera 50.
-
-> TODO: Si el termino normal esta en el denominador,
-> el precio una [distribución Gausiana inversa
-> ](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)
-
 ## Conclusiones
 
 En resumen,
-al abstraer el precio de corte $P_c$ como resultado del algoritmo
+al abstraer el precio de corte $P_{max}$ como resultado del algoritmo
 y establecer relaciones entre este valor y el resto de parámetros,
 se pueden obtener conclusiones generales sobre la aplicación de D'Hondt
 sin tener que ejecutar el algoritmo para cada caso.
 
 Los votos a una candidatura se dividen
 en votos que consiguen escaños y restos que no intervienen en el reparto.
-Los restos de toda candidatura estan limitados por el precio de corte.
+Los restos de toda candidatura están limitados por el precio de corte.
 
 También hemos detectado varios trasvases que
 mantienen algunas condiciones del reparto.
-Por ejemplo, reducir para una candidatura
-tantos votos como restos tiene o
-trasvasar entre dos candidaturas
-tantos votos como el precio de corte.
+Por ejemplo, modificar los votos afectando solo a los restos,
+o trasvasar justo el precio del escaño.
 
 Los efectos de este ultimo tipo de trasvase, además,
 demuestran que, por concentración de voto,

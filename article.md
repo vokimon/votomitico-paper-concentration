@@ -106,6 +106,8 @@ abstract: |
 - Aportaciones: Nuevas herramientas para estudiar D'Hondt
     - Impacto: dirimir otros mitos/dilemas: pactos, umbral, voto en blanco...
 
+!include derivaciones.md
+
 # Referencias {.unnumbered }
 
 ::: {#refs}
