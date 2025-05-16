@@ -144,20 +144,22 @@ Las relaciones entre los parámetros también
 nos permiten acotar y estimar el precio de corte,
 lo que puede ser muy útil para el análisis.
 
-Considerando la suma de votos a candidaturas:
+Considerando la suma de votos a candidaturas,
 
 $$
-    V = \sum_i V_i = P_{max} E + \sum_i R_i
+    V = \sum_i V_i = P E + \sum_i R_i
 $$
 
-$$
-    P_{max} = {V - \sum_i{R_i} \over E}
-$$
-
-Como $R_i$ está acotado, también lo está $P_{max}$:
+Donde P es un precio de reparto exacto.
 
 $$
-    {V \over E+K} < P_{max} <= {V \over E}
+    P = {V - \sum_i{R_i} \over E}
+$$
+
+Como $R_i$ está acotado, también lo está $P$:
+
+$$
+    {V \over E+K} < P <= {V \over E}
 $$
 
 Donde, recordemos, K es el número de candidaturas.
@@ -168,6 +170,28 @@ podemos obtener una buena estimación del precio:
 $$
 \displaystyle \mathbb {E} [P_{max}] = {V \over E + K \mathbb{E}[R_i]}
 $$
+
+La figura \ref{fig:realdata-normalizedprice} muestra
+la distribución de valores posibles para 
+
+
+![
+Este histograma, obtenido de 832 casos reales,
+52 circunscripciones en 16 convocatorias al congreso
+de 1977 a 2024,
+representa la frecuencia de cada precio,
+expresado de forma relativa entre _V/(E+K)_ y _V/E_,
+es un precio exacto para el resultado.
+](figures/realdata-normalizedprice.pdf){#fig:realdata-normalizedprice}
+
+![
+En este histograma se representan los mismos casos,
+pero en este caso el histograma es sobre f
+en la fórmula _P = V / (E + f·K)_.
+_f_ representaría la distribución media de los restos.
+Se observa que la moda está cerca de 0.2.
+](figures/realdata-fhistogram.pdf){#fig:realdata-fhistogram}
+
 
 > TODO: Hacer esta estimación a partir de datos reales de diferentes convocatorias.
 

@@ -35,7 +35,7 @@ uno de la parte exactamente divisible por $P_{max}$,
 y otro trasvase del resto.
 
 Por el teorema de resultados repetidos,
-el trasvase divisible por $P_{max}$
+el trasvase de la parte divisible por $P_{max}$
 nos lleva a una situación donde
 el mismo precio genera los mismos restos,
 los mismos escaños para terceras candidaturas,
@@ -45,6 +45,7 @@ que conserva el resultado conjunto.
 Quedaría por saber qué pasa con un trasvase de N votos
 donde N sea una fracción del precio de escaño
 $0 <= N < P_{max}$.
+
 Lo que pase va a depender de qué restos tengan las candidaturas emisora y receptora
 en el escenario de partida.
 Si la emisora tiene restos menores que $N$, perderá un escaño.
@@ -55,31 +56,59 @@ Zonas en los restos en las que un cambio de votos menor que P,
 pueden producir cambios en el resultado de una candidatura.
 ](figures/critical-zones.pdf)
 
-Ambas cosas pueden producirse o no de forma independiente:
+El tamaño del trasvase N define lo extenso de esas zonas críticas de restos.
+Los restos de ambas candidaturas pueden estar o no, de forma independiente,
+en su zona crítica.
 
-+------------------+---------------+
-|                  | **Receptora** |
-+----------+-------+-------+-------+
-|          |       |  **0**| **+1**|
-+==========+======:+======:+======:+
-|Emisora   |  **0**|      0|     +1|
-|          +-------+-------+-------+
-|          | **-1**|     -1|      0|
-+----------+-------+-------+-------+
+Lo que da 4 posibles combinaciones:
+Si ninguna está en zona critica, el cambio no tiene efecto alguno.
+Si solo la receptora está en su zona crítica, el trasvase implica un incremento en un escaño en el resultado conjunto.
+Si solo la emisora está en la zona crítica, el trasvase generará un empeoramiento de un escaño del resultado conjunto.
+Finalmente, si ambas lo están, aunque un escaño pase de una a otra, el resultado conjunto también sigue igual.
 
 
-Este tipo de análisis lo podemos realizar a posteriori,
-pero, en un análisis preelectoral no podemos saber, solo estimar,
-cuáles son los restos de cada formación.
-Para eso, es necesario realizar un análisis probabilístico.
+
++-------------+------:+-------+-------+
+|             |       | **Receptora** |
++-------------+-------+-------+-------+
+|             |       |  **0**| **+1**|
++=============+=======+=======+=======+
+|**Emisora**  |  **0**|      0|     +1|
+|             +-------+-------+-------+
+|             | **-1**|     -1|      0|
++-------------+-------+-------+-------+
+
+Sin embargo, solo podemos saber
+donde de los restos está una candidatura,
+en un análisis a posteriori.
+Es decir, en un análisis de caja blanca.
+Si estamos en una situación de caja gris,
+necesitaremos hacer un análisis probabilístico.
+
 
 ## Ditribución probabilística de los restos
 
 Antes de que se produzca un resultado electoral,
 la información de la que disponemos
-son las encuestas [@alaminos2023metodos].
+son los resultados de convocatorias anteriores
+pero sobretodo las encuestas [@alaminos2023metodos].
 Las encuesta modelan el voto a cada candidatura como una distribución normal
-definida por una esperanza y una desviación estandard.
+definida por una esperanza y un error absoluto.
+
+La mayoría de encuestas anuncian sus resultados
+en base a los resultados finales
+ya agregando las distintas circunscripciones.
+Sin embargo, de cara a voto estratégico,
+es mucho más importante tener una estimación
+del resultado local de cada circunscripción
+porque es dónde tiene impacto directo la persona votante.
+
+
+
+
+
+
+
 
 
 

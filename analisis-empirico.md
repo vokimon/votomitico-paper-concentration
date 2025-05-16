@@ -99,7 +99,7 @@ Según el escenario, se detectaron dos patrones diferenciados durante las simula
 
     ![
     Intercambio directo sin variación en los escaños conjuntos.
-    ](figures/transfer-ab-plane.pdf){#fig:transfer-ab-flat}
+    ](figures/transfer-ab-flat.pdf){#fig:transfer-ab-flat}
 
 ## Conclusiones
 
