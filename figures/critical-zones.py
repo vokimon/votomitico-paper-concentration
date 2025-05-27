@@ -1,20 +1,26 @@
 import svgwrite
 from cairosvg import svg2png, svg2pdf
+from svgtools import *
 
 # New helper function to handle multiline text
-def add_text(dwg, x, y, lines, font_size="11px", line_spacing=14, text_anchor='middle', dominant_baseline="auto"):
+def add_text(dwg, x, y, text, font_size="11px", line_spacing=14, hanchor='center', vanchor="bottom"):
     """
     Adds multiline text to the drawing.
     
     :param dwg: The SVG drawing object.
     :param x: horizontal position of the insertion point
     :param y: vertical position of the insertion point
-    :param lines: List of text lines to be added.
+    :param text: List of text lines to be added.
     :param font_size: The font size of the text.
     :param line_spacing: The space between lines.
     """
-    if type(lines) == str:
-        lines = lines.split('\n')
+    horizontal_map = {"left": "start", "center": "middle", "right": "end"}
+    vertical_map = {"top": "hanging", "center": "middle", "bottom": "text-after-edge"}
+
+    text_anchor = horizontal_map[hanchor]
+    dominant_baseline = vertical_map[vanchor]
+
+    lines = text.split('\n') if type(text) == str else text
     if dominant_baseline != "hanging":
         y = y - (len(lines)-1) * line_spacing
     for i, line in enumerate(lines):
@@ -65,22 +71,22 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
 
     ordenate_offset = 4
 
-    add_text(dwg, orange_end, bar_y + bar_height + ordenate_offset, "P\n100.000", text_anchor="middle", dominant_baseline="hanging", font_size="12px")
-    add_text(dwg, orange_start, bar_y + bar_height + ordenate_offset, "0", text_anchor="middle", dominant_baseline="hanging", font_size="12px")
+    add_text(dwg, orange_end, bar_y + bar_height + ordenate_offset, "P\n100.000", vanchor='top', font_size="12px")
+    add_text(dwg, orange_start, bar_y + bar_height + ordenate_offset, "0", vanchor='top', font_size="12px")
     # Red block (N)
     red_center = orange_start + transfer_size / 2
     dwg.add(dwg.rect((orange_start, bar_y), (transfer_size, bar_height), fill="red"))
-    add_text(dwg, orange_start + transfer_size, bar_y + bar_height + ordenate_offset, "N\n10.000", text_anchor="middle", dominant_baseline="hanging", font_size="12px")
+    add_text(dwg, orange_start + transfer_size, bar_y + bar_height + ordenate_offset, "N\n10.000", vanchor='top', font_size="12px")
 
     # Green block (P - N)
     green_start = orange_end - transfer_size
     green_center = green_start + transfer_size / 2
     dwg.add(dwg.rect((green_start, bar_y), (transfer_size, bar_height), fill="#4b3"))
-    add_text(dwg, green_start, bar_y + bar_height + ordenate_offset, "P - N\n90.000", text_anchor="middle", dominant_baseline="hanging", font_size="12px")
+    add_text(dwg, green_start, bar_y + bar_height + ordenate_offset, "P - N\n90.000", vanchor='top', font_size="12px")
 
     def add_measure(x, label):
         dwg.add(dwg.line((x, bar_y - 30), (x, bar_y + bar_height + 10), stroke="black", stroke_dasharray="5,5"))
-        add_text(dwg, x, bar_y -35, label, text_anchor="middle", font_size="11px")
+        add_text(dwg, x, bar_y -35, label, font_size="11px")
 
     add_measure(orange_start, ["Último escaño", "conseguido"])
     add_measure(orange_end, ["Umbral siguiente", "escaño"])
@@ -104,9 +110,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     add_text(dwg,
         x = (orange_start + orange_end) / 2,
         y = arrow_y - 5,
-        lines= "Precio del escaño, P\n(pe. 100.000 votos)",
-        text_anchor="middle",
-        dominant_baseline="auto",
+        text= "Precio del escaño, P\n(pe. 100.000 votos)",
         font_size="11px",
     )
 
@@ -121,7 +125,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         "Zona en la que",
         "perder 10.000 votos",
         "quitaría un escaño",
-    ], dominant_baseline="hanging")
+    ], vanchor='top')
 
     dwg.add(dwg.line(
         (red_text_x, text_block_y - 5),
@@ -137,7 +141,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
         "Zona en la que",
         "ganar 10.000 votos",
         "añadiría un escaño",
-    ], dominant_baseline="hanging")
+    ], vanchor='top')
 
     dwg.add(dwg.line(
         (green_text_x, text_block_y - 5),
@@ -153,8 +157,7 @@ def draw_seat_price_illustration(svg_filename="critical-zones.svg"):
     # Export to PNG and PDF using CairoSVG
     with open(svg_filename, "rb") as f:
         svg_data = f.read()
-        svg2png(bytestring=svg_data, write_to=svg_filename.replace(".svg", ".png"))
-        svg2pdf(bytestring=svg_data, write_to=svg_filename.replace(".svg", ".pdf"))
+    export_png_pdf(svg_filename)
 
 
 # Run the function

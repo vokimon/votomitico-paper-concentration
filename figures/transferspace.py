@@ -1,4 +1,4 @@
-
+import svgtools
 import svgwrite
 import cairosvg
 
@@ -152,8 +152,6 @@ def generate_transfer_space_results(
     show_price=True,
 ):
     output_svg = f"{basename}.svg"
-    output_png = f"{basename}.png"
-    output_pdf = f"{basename}.pdf"
 
     dwg = svgwrite.Drawing(output_svg, size=(width, height))
 
@@ -228,8 +226,7 @@ def generate_transfer_space_results(
     )
 
     dwg.save()
-    cairosvg.svg2png(url=output_svg, write_to=output_png)
-    cairosvg.svg2pdf(url=output_svg, write_to=output_pdf)
+    svgtools.export_png_pdf(output_svg)
 
 
 def generate_transfer_space_price(
@@ -247,8 +244,6 @@ def generate_transfer_space_price(
     show_price=True,
 ):
     output_svg = f"{basename}.svg"
-    output_png = f"{basename}.png"
-    output_pdf = f"{basename}.pdf"
 
     dwg = svgwrite.Drawing(output_svg, size=(width, height))
 
@@ -395,8 +390,7 @@ def generate_transfer_space_price(
     )
 
     dwg.save()
-    cairosvg.svg2png(url=output_svg, write_to=output_png)
-    cairosvg.svg2pdf(url=output_svg, write_to=output_pdf)
+    svgtools.export_png_pdf(output_svg)
 
 if __name__ == "__main__":
     size = 500
