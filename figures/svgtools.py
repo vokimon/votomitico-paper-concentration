@@ -1,8 +1,36 @@
 import colour
 import cairosvg
+from pathlib import Path
+
+def parse_scenario(filepath):
+    candidatures = []
+    especiales = {}
+    print(f"=== Processing {filepath}")
+    with Path(filepath).open(encoding='utf-8') as f:
+        for line in f:
+            if not line.strip():
+                continue
+            parts = line.strip().split('\t')
+            if parts[0].lower() == "siglas":
+                continue  # saltar cabecera
+            key = parts[0]
+            if key.lower() in ["censo", "participacion", "abstencion", "nulos", "blancos"]:
+                especiales[key.lower()] = int(parts[1])
+                continue
+            votos = int(parts[1])
+            diputados = int(parts[2]) if len(parts) > 2 else 0
+            nombre = parts[3] if len(parts) > 3 else ""
+            candidatures.append({
+                "siglas": key,
+                "votos": votos,
+                "diputados": diputados,
+                "nombre": nombre
+            })
+    return especiales, candidatures
 
 def spnum(n):
     return f"{n:,}".translate(str.maketrans({',':'.', '.':','}))
+
 
 def darken(color, factor=0.83):
     try:
