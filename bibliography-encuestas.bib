@@ -77,3 +77,89 @@
   }
 }
 
+@article{lamas2016_margenes_error,
+  author  = {Carlos Lamas},
+  title   = {Los márgenes de error en las encuestas electorales},
+  journal = {Investigación y Marketing (AEDEMO)},
+  number  = {132},
+  year    = {2016},
+  month   = sep,
+  url     = {https://www.aimc.es/a1mc-c0nt3nt/uploads/2016/10/2016_09rev_aedemo_los_margenes_de_error_en_las_encuestas_electorales.pdf},
+  urldate = {2025-07-05},
+  note    = {
+    El margen de error clásico se refiere a
+    proporciones binarias bajo muestreo aleatorio simple.
+    No es directamente aplicable a estimaciones con múltiples partidos.
+    El error depende del porcentaje observado y es mayor cerca del 50%.
+    Las encuestas usan ponderaciones que subestiman la varianza real.
+    El margen de error no cubre sesgos sistemáticos como no respuesta o cocina.
+    Además, no se pueden sumar errores entre partidos sin considerar su correlación.
+    Estas ideas son clave para modelar los restos y analizar trasvases de votos en D'Hondt.
+    El margen de error es un intervalo de confianza al 95 por ciento
+    bajo un modelo frecuentista que indica que,
+    si se repitieran infinitas encuestas con el mismo procedimiento,
+    el porcentaje verdadero estaría dentro del rango estimado en el 95% de los casos.
+    No es una probabilidad directa de que el valor real esté en ese intervalo
+    y no aplica igual para porcentajes muy distintos de 50\%.
+    Además, no considera errores no aleatorios ni la complejidad del muestreo ponderado,
+    por lo que subestima la incertidumbre real.
+  }
+}
+
+@book{gelman2013_bayesian,
+  author    = {Andrew Gelman and John B. Carlin and Hal S. Stern and David B. Dunson and Aki Vehtari and Donald B. Rubin},
+  title     = {Bayesian Data Analysis},
+  edition   = {3rd},
+  year      = {2013},
+  publisher = {CRC Press},
+  address   = {Boca Raton, FL},
+  isbn      = {9781439840955},
+  url       = {https://www.routledge.com/Bayesian-Data-Analysis-Third-Edition/Gelman-Carlin-Stern-Dunson-Vehtari-Rubin/p/book/9781439840955},
+  note      = {Capítulo 2 y 3 explican el modelo Beta-Binomial como
+              distribución posterior para una proporción binaria a partir
+              de datos de conteo.
+    Al observar x éxitos en n pruebas Bernoulli, y asumir un prior Beta(α, β),
+    se obtiene una posterior Beta(x+α, n−x+β)
+    Es aplicable directamente a la estimación
+    del voto verdadero a partir de encuestas electorales.
+    El modelado binomial 
+              También discute brevemente los otros dos modelos, normal y binomial,
+              aunque desde una perspectiva más general.
+               Ch. 2 (Bayesian inference fundamentals),
+               Ch. 3 (Inference for a proportion using Beta posterior),
+               Ch. 4 (Normal approximations), Ch. 10 (Bayes vs frequentist).}
+}
+
+@book{agresti2007_categorical,
+  author    = {Alan Agresti},
+  title     = {An Introduction to Categorical Data Analysis},
+  edition   = {2nd},
+  year      = {2007},
+  publisher = {Wiley},
+  isbn      = {9780471226185},
+  url       = {https://www.wiley.com/en-us/An+Introduction+to+Categorical+Data+Analysis%2C+2nd+Edition-p-9780471226185},
+  note      = {
+    Cubre modelado de proporciones con distribución binomial,
+    construcción de intervalos de confianza (frecuentista y
+    aproximación normal), y fundamentos del uso de la distribución
+    Beta como modelo bayesiano para proporciones.
+    Relevant chapters:
+    Ch. 2 (Inference for a single proportion),
+    Ch. 3.4 (Confidence intervals and rare proportions),
+    Ch. 13 (Bayesian methods for proportions).}
+}
+
+@techreport{navarro2012_betabinomial,
+  author       = {Dan Navarro and Amy Perfors},
+  title        = {An Introduction to the Beta-Binomial Model},
+  institution  = {University of Adelaide, Computational Cognitive Science},
+  year         = {2012},
+  type         = {Technical Note},
+  url          = {https://compcogsci-3016.djnavarro.net/technote_betabinomial.pdf},
+  urldate      = {2025-07-05},
+  note         = {Explica el modelo beta-binomial: prior Beta sobre p,
+                verosimilitud Binomial(x|n,p), y posterior conjugada
+                Beta(x+α, n−x+β). Muy útil para inferir proporciones con
+                incertidumbre a partir de conteos.}
+}
+

@@ -59,24 +59,11 @@ pueden producir cambios en el resultado de una candidatura.
 El tamaño del trasvase N define lo extenso de esas zonas críticas de restos.
 Los restos de ambas candidaturas pueden estar o no, de forma independiente,
 en su zona crítica.
-
 Lo que da 4 posibles combinaciones:
-Si ninguna está en zona critica, el cambio no tiene efecto alguno.
+Si ninguna candidatura está en zona critica, el trasvase no tiene efecto alguno.
 Si solo la receptora está en su zona crítica, el trasvase implica un incremento en un escaño en el resultado conjunto.
 Si solo la emisora está en la zona crítica, el trasvase generará un empeoramiento de un escaño del resultado conjunto.
-Finalmente, si ambas lo están, aunque un escaño pase de una a otra, el resultado conjunto también sigue igual.
-
-
-
-+-------------+------:+-------+-------+
-|             |       | **Receptora** |
-+-------------+-------+-------+-------+
-|             |       |  **0**| **+1**|
-+=============+=======+=======+=======+
-|**Emisora**  |  **0**|      0|     +1|
-|             +-------+-------+-------+
-|             | **-1**|     -1|      0|
-+-------------+-------+-------+-------+
+Finalmente, si ambas están en zona crítica, aunque un escaño pase de una a otra, el resultado conjunto queda igual.
 
 Sin embargo, solo podemos saber
 donde de los restos está una candidatura,
@@ -86,12 +73,14 @@ Si estamos en una situación de caja gris,
 necesitaremos hacer un análisis probabilístico.
 
 
-## Ditribución probabilística de los restos
+## Distribución probabilística de los restos
 
 Antes de que se produzca un resultado electoral,
 la información de la que disponemos
 son los resultados de convocatorias anteriores
-pero sobretodo las encuestas [@alaminos2023metodos].
+y las encuestas electorales [@alaminos2023metodos].
+
+
 Las encuesta modelan el voto a cada candidatura como una distribución normal
 definida por una esperanza y un error absoluto.
 

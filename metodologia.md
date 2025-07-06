@@ -27,7 +27,7 @@ La metodologia sigue estos tres pasos:
 Aplicándolo al ámbito de este artículo:
 
 - La **situación inicial** es un resultado electoral concreto: histórico, hipotético o basado en encuestas.
-- La **hipotesis de cambio** normalmente es un trasvase de votos entre candidaturas.
+- La **hipótesis de cambio** normalmente es un trasvase de votos entre candidaturas.
 - Los **resultados** a evaluar son los escaños repartidos o cualquier otro parámetro de interés.
 
 Por ejemplo:
@@ -55,21 +55,21 @@ podremos evaluar la probabilidad de cada posible resultado.
 
 ## Hipótesis de cambio grupal
 
-Es poco frecuente que un solo voto cambie un resultado.
+Es poco frecuente que el resultado de una votación dependa de un solo voto.
 Aunque puede ocurrir, no es lo habitual.
-Por eso, formularemos las _hipotesis de cambio_
+Por eso, formularemos las _hipótesis de cambio_
 considerando un grupo de votantes de un determinado perfil
 que tomarán coherentemente la misma decisión de cambio de voto.
 
 Podemos incorporar el tamaño del grupo
 en el enunciado del problema
-de dos formas complementarias:
+con dos fórmulas complementarias:
 
 - _¿Cómo un grupo de N personas, que
 opte por votar a X en vez de Y, puede alterar el resultado
 (y con qué probabilidad)?_
 
-- _¿Cómo de grande ha de ser el grupo
+- _¿De qué tamaño ha de ser el grupo
 para que cambie el resultado (con una cierta probabilidad)?_
 
 
@@ -95,30 +95,32 @@ Además, el simulador no proporciona una explicación de los efectos observados.
 
 ### Fase 2: Formulación algebraica {.unnumbered}
 
-Dado que el algoritmo de D'Hondt
-presentaba limitaciones para la generalización,
-desarrollamos una formulación algebraica
-que nos permitió abstraernos de él.
-Esta representación nos llevó a conclusiones clave, 
-como que trasvasar una cantidad de votos
-equivalente al precio de corte,
-mantenia constante el mismo precio corte,
-los restos de todas las candidaturas
-y el resultado conjunto de bloque.
-Quedó como incognita qué sucede cuando traspasamos
-una fracción de ese precio.
+La formulación usual del método de D'Hondt,
+con un enfoque procedimental,
+presenta limitaciones para la generalización.
+En esta segunda fase, se desarrolló una formulación algebráica
+que establece el precio del escaño como resultado principal del reparto
+a partir del cual se pueden derivar algebráicamente los escaños repartidos.
+Esta formulación permitirá unas primeras conclusiones generales,
+aunque se vió necesario más análisis para establecer la dinámica
+generada por los trasvases.
 
 ### Fase 3: Modelo aproximado {.unnumbered}
 
-Bajo la aproximación, conscientemente burda, de que
-el precio de corte no se ve alterado por los trasvases,
-los restos quedaron como único parámetro
-que determina cuando se gana o pierde un escaño.
-Al modelar probabilísticamente los restos iniciales de receptor y emisor,
-obtuvimos una probabilidad equivalente
-para los escenarios de ganar y de perder un escaño conjunto.
-También establecimos flujos progresivos de votos
-y comprobamos que seguían patrones similares a los empíricos.
+En esta tercera fase, hicimos la aproximación
+de que el precio del escaño no se ve alterado por los trasvases.
+Bajo este supuesto,
+el único parámetro que determina si un trasvase de votos
+genera ganancia o pérdida de escaños son los restos
+de dividir los votos obtenidos por ese precio.
+Bajo el supuesto añadido de que hay una incertidumbre total de los restos,
+resultó que los escenarios que acaban en una ganancia neta de grupo,
+tienen exactamente la misma probabilidad que los de pérdida neta,
+y es independiente de la dirección de más grande a más pequeño o al revés.
+Estos resultados reproducían los resultados empíricos,
+sin embargo,
+las suposiciones que habilitaron este análisis
+no permitían generalizar los resultados.
 
 ### Fase 4: Modelo general {.unnumbered}
 

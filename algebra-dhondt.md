@@ -172,8 +172,8 @@ $$
 $$
 
 La figura \ref{fig:realdata-normalizedprice} muestra
-la distribución de valores posibles para 
-
+la distribución de precios exactos posibles para
+casos reales en elecciones para el Congreso Español.
 
 ![
 Este histograma, obtenido de 832 casos reales,
@@ -183,6 +183,11 @@ representa la frecuencia de cada precio,
 expresado de forma relativa entre _V/(E+K)_ y _V/E_,
 es un precio exacto para el resultado.
 ](figures/realdata-normalizedprice.pdf){#fig:realdata-normalizedprice}
+
+Si visualizamos lo mismo pero respecto a la esperanza de los restos,
+vemos que la esperanza de los restos estaria en algún lugar cercano a $0.2$.
+Aún así depende de los escaños a repartir,
+cuando hay pocos escaños, los restos son mayores.
 
 ![
 En este histograma se representan los mismos casos,
