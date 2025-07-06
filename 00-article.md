@@ -8,6 +8,8 @@ classoption:
 numbersections: true
 link-citations: true
 link-bibliography: true
+header-includes:
+  - \usepackage{draftwatermark}
 bibliography:
 - bibliography.bib
 - bibliography-vote-concentration-calls.bib
