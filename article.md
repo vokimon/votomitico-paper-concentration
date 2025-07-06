@@ -39,17 +39,17 @@ abstract: |
 
 ---
 
-!include intro.md
+!include 01-intro.md
 
-!include metodologia.md
+!include 02-metodologia.md
 
-!include analisis-empirico.md
+!include 03-analisis-empirico.md
 
-!include algebra-dhondt.md
+!include 04-algebra-dhondt.md
 
-!include modelo-aproximado.md
+!include 05-modelo-aproximado.md
 
-!include modelo-general.md
+!include 06-modelo-general.md
 
 # Condiciones que habilitan el voto estratégico
 
