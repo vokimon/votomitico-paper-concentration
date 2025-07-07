@@ -9,7 +9,7 @@ numbersections: true
 link-citations: true
 link-bibliography: true
 header-includes:
-  - \usepackage{draftwatermark}
+  - \usepackage[colorspec=0.95,text=BORRADOR,fontsize=0.2\paperwidth]{draftwatermark}
 bibliography:
 - bibliography.bib
 - bibliography-vote-concentration-calls.bib
