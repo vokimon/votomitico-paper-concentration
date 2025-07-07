@@ -70,27 +70,119 @@ donde de los restos está una candidatura,
 en un análisis a posteriori.
 Es decir, en un análisis de caja blanca.
 Si estamos en una situación de caja gris,
-necesitaremos hacer un análisis probabilístico.
+necesitaremos derivar la probabilidad
+de que una candidatura este en cierta zona de restos.
 
 
 ## Distribución probabilística de los restos
 
-Antes de que se produzca un resultado electoral,
-la información de la que disponemos
-son los resultados de convocatorias anteriores
+Necesitamos saber,
+antes de que se produzca un resultado electoral,
+cual es la probabilidad de que una candidatura
+esté en una de las zonas críticas de restos.
+Tenemos dos posibles fuentes de información:
+los resultados de convocatorias anteriores
 y las encuestas electorales [@alaminos2023metodos].
 
+Las encuestas nos permiten modelar el voto recibido por un partido
+como una distribución de probabilidad normal con una esperanza
+y una dispersión determinada por el margen de error [@agresti_statistical_2018].
 
-Las encuesta modelan el voto a cada candidatura como una distribución normal
-definida por una esperanza y un error absoluto.
+Dado un precio de reparto arbitrario $P$,
+los restos se obtienen al aplicar el módulo con base $P$ a los votos recibidos.
+Aplicar el módulo a una variable de distribución normal
+da lugar a una distribución normal cíclica [@fisher_wrapped_1995],
+donde la base del módulo, el precio $P$, define el periodo.
 
-La mayoría de encuestas anuncian sus resultados
-en base a los resultados finales
-ya agregando las distintas circunscripciones.
-Sin embargo, de cara a voto estratégico,
-es mucho más importante tener una estimación
-del resultado local de cada circunscripción
-porque es dónde tiene impacto directo la persona votante.
+Cuando la varianza de la distribución original es baja,
+la probabilidad de la cíclica se concentra en torno a una moda,
+$\hat{V_i} \bmod P$.
+En este caso diremos que la distribución tiene un perfil _sesgado_.
+
+Sin embargo, a medida que aumenta la varianza de la distribución original,
+esa concentración se diluye progresivamente,
+aproximándose cada vez más a una distribución uniforme.
+En este caso diremos que la distribucion tiene un perfil _uniforme_.
+
+En la práctica,
+se considera que una distribución normal cíclica
+es equivalente a una uniforme cuando:
+
+$$
+\sigma \gtrsim \frac{P}{\sqrt{2\pi}}
+$$
+
+$$
+P \lesssim \sqrt{2\pi} \cdot \sigma \approx 2.5 \cdot \sigma
+$$
+
+Combinando esta relación con la del precio en función de los escaños,
+y la fórmula del error muestral[^error-muestral],
+obtenemos la siguiente desigualdad, equivalente a la anterior:
+
+[^error-muestral]:
+    La fórmula para el error muestral se calcula como:
+
+    $$
+    SE = \sqrt{\frac{q (1-q)}{n}}
+    $$
+
+
+$$
+n \lesssim q (1 - q) \cdot \left[ 2.5 (E + fK) \right]^2
+$$
+
+donde 
+$E$ el número de escaños a repartir en la circunscripción,
+$K$ el número de candidaturas,
+$f$ el promedio de restos por candidatura como factor de $P$,
+$n$ el tamaño muestral para esa circunscripción,
+y $q$ la proporción estimada de voto para una candidatura concreta en la circunscripción.
+
+Esta desigualdad recoge cómo distintos factores,
+en un escenario de análisis concreto,
+inclinan la distribución de restos
+hacia un perfil sesgado o uniforme.
+
+En concreto, las siguientes situaciones favorecen un perfil sesgado:
+
+- **$n$** alto: muestra amplia en la circunscripción.
+- **$E$** bajo: la circunscripción reparte pocos escaños
+- **$K$** o **$f$** bajos: pocas candidaturas con opción a escaño en la circunscripción
+- **$q$** bajo: candidatura muy pequeña, con una proporción estimada cercana a 0[^q-alto]
+
+[^q-alto]:
+    Técnicamente, también se daría con $q$ cercano a 1,
+    pero representaría una situación inusual de concentración
+    casi total del voto en una sola candidatura.
+
+Las situaciones con perfil sesgado,
+son análogas a las situaciones
+de caja blanca pero introduciendo
+cierta incertidumbre.
+Por ello es posible cierto voto estratégico
+que comentaremos más adelante.
+
+En lo que queda de este análisis
+consideraremos que los restos se aproximan
+a una distribución uniforme,
+obviando estos casos.
+
+
+
+
+Outline:
+
+- [x] Segun las referencias, las encuestas tienen ciertos parametros
+- [x] Esos parametros son ¿globales?, si dividimos por partido y circunscripción, la muestra es menor y el error sera mayor
+- [x] Sirva pues el error global como cota inferior
+- [ ] Pasos para convertir los datos tecnicos de la encuesta en una distribucion de probabilidad
+- [ ] De distribucion de probabilidad de voto a probabilidad de restos
+- [ ] Cuando podemos considerar la probabilidad de restos uniforme
+- [ ] Contrastar con los valores de encuestas reales
+- [ ] Recordar que se acentuara si nos concentramos en provincias y partidos concretos
+- [ ] Conclusion: distribucion uniforme
+- [ ] Enumerar las salvedades
 
 
 
