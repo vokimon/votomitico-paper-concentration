@@ -70,9 +70,6 @@ los escaños conjuntos de ambos partidos aumentaran.
 Sin embargo, la simulación nos sorprendió,
 ya que los resultados no siguieron este patrón esperado.
 
-El simulador, que incluye los datos históricos y sintéticos,
-está disponible en votomitico.org.
-
 ## Patrones Observados
 
 Según el escenario, se detectaron dos patrones diferenciados durante las simulaciones:
