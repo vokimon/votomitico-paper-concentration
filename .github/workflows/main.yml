@@ -31,11 +31,14 @@ jobs:
       - name: Generate pdf
         run: |
           ./build.sh
-      - name: Update nightly release
-        uses: eine/tip@master
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          tag: draft
-          rm: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: article.pdf
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: article.pdf
+          asset_name: article-${{ github.event.repository.updated_at}}
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "Último borrador del artículo actualizado a ${{ github.event.repository.updated_at }}"
 
