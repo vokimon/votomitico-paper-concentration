@@ -38,7 +38,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: article.pdf
           asset_name: article-${{ github.event.repository.updated_at}}
-          tag: ${{ github.ref }}
+          tag: draft
           overwrite: true
           body: "Último borrador del artículo actualizado a ${{ github.event.repository.updated_at }}"
 
