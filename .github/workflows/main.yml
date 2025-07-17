@@ -40,5 +40,5 @@ jobs:
           asset_name: article-${{ github.event.repository.updated_at }}.pdf
           tag: draft
           overwrite: true
-          body: "Último borrador del artículo actualizado a ${{ github.event.repository.updated_at }}"
+          body: "Último borrador del artículo. Actualizado: ${{ github.event.repository.updated_at }}"
 
