@@ -31,8 +31,11 @@ jobs:
       - name: Generate pdf
         run: |
           ./build.sh
-      - uses: actions/upload-artifact@master
+      - name: Update nightly release
+        uses: eine/tip@master
         with:
-          name: resultat
-          path: article.pdf
+          tag: draft
+          rm: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: article.pdf
 
