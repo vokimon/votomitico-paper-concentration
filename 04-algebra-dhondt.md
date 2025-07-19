@@ -132,13 +132,11 @@ $$
 $$
 
 
-## Interpretación
+A partir de este formalismo,
+los siguientes apartados extraeran una serie de deducciones
+que se pueden hacer directamente.
 
-A continuación, se detallan una serie de conclusiones,
-que el formalismo anterior permite extraer,
-en una primera mirada.
-
-### Cotas y estimación para el precio del escaño
+## Cotas y estimación para el precio del escaño
 
 Las relaciones entre los parámetros también
 nos permiten acotar y estimar el precio de corte,
@@ -210,32 +208,37 @@ Se observa que la moda está cerca de 0.2.
 > el precio una [distribución Gausiana inversa
 > ](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)
 
-### Teorema de la inutilidad de los restos
+## Teorema de la inutilidad de los restos
 
 **Teorema:**
 Dado un escenario inicial,
-donde para una formación $i$,
-$V_i = E_i P_{max} + R_i$,
-obtendremos el mismo reparto de escaños,
-si modificamos sus votos tal que 
+y un precio de reparto exacto $P$ y por tanto $P_{min} < P <= P_{max}$,
+modificar los votos de la candidatura $i$,
+no modificará el resultado ni los restos de otras candidaturas por ese precio,
+si la variación se mantiene dentro del intérvalo:
 
 $$
--R_i <= \Delta V_i < P_{max} - R_i
+-R_i <= \Delta V_i < P - R_i
 $$
 
+La interpretación intuitiva de este teorema es que
+el resultado en escaños no se altera si le quitamos a una
+candidatura, tantos votos como restos tiene
+o si le añadimos votos sin que los restos
+alcancen el precio.
 
 **Demostración**
 
 Para obtener el mismo resultado,
 si expresamos los nuevos votos como,
 $$
-V_i' = E_i P_{max} + R_i'
+V_i' = E_i P + R_i'
 $$
 
 Se tendría que cumplir la restricción sobre los restos
 que requiere un reparto exacto:
 $$
-0 <= R_i' < P_{max}
+0 <= R_i' < P
 $$
 
 Tenemos que:
@@ -243,30 +246,61 @@ $$
 \Delta V_i = V_i' - V_i = R_i' - R_i \\
 $$
 $$
--R_i <= \Delta V_i = R_i' - R_i < P_{max} - R_i \\
+-R_i <= \Delta V_i = R_i' - R_i < P - R_i \\
 $$
 $$
-0 <= R_i' < P_{max}  \quad q.e.d.
+0 <= R_i' < P  \quad q.e.d.
 $$
 
-**Observaciones**
+**Extensión a $P_{min}$ y $P_{max}$ **
 
-Esto no quiere decir que $P_{max}$ siga siendo el precio de corte tras el trasvase.
-Normalmente, sí lo será.
-Dejará de serlo si la candidatura que modificamos
-es la única que, originalmente, tuviera $R_i=0$.
-En ese caso, la modificación que podemos hacer es añadir restos,
-pero dejarían de ser cero, y no se cumpliría la condición
-para que el antiguo $P_{max}$ siguiera siendo el precio de corte.
-Seguiría siendo un precio de reparto exacto
-pero no el de corte.
+El teorema anterior se cumple para cualquier precio de reparto exacto $P$ tal que $P_{min} < P <= P_{max}$.
+Aunque un cambio en el precio no cumpla la condición para algunos
+de los precios del intérvalo,
+el reparto final no varía si para algunos de ellos se cumple.
+Esto relaja la condición para que el reparto no varie a:
 
-**Discusión:**
+$$
+-{R_i}_{min} < \Delta V_i < P_{max} - {R_i}_{max}
+$$
 
-Una intuición que podemos extraer de aquí es que
-los restos, o votos inútiles, funcionan de forma
-muy parecida, en formaciones grandes y pequeñas.
-Todas pueden acumilar hasta $P_{max}$ votos
+Donde:
+
+$$
+{R_i}_{min} = V_i - E_i P_{min};
+{R_i}_{max} = V_i - E_i P_{max}
+$$
+
+La interpretación es que una candidatura
+pierde el escaño cuando pierde tantos votos
+como restos tenga repartidos por $P_{min}$.
+Por otro lado, una candidatura gana el escaño
+cuando los restos a $P_{max}$ alcanzan $P_{max}$.
+
+**Trasvases entre candidaturas:**
+
+El teorema se refiere a modificar los votos de una sola candidatura,
+manteniendo invariante el voto a las otras candidaturas.
+El flujo de votos lo estaríamos haciendo entre la candidatura y el no-voto (abstención o nulo)
+En nuestro problema estamos considerando un trasvase entre dos candidaturas,
+que se puede interpretar como dos flujos de signo diferente
+e igual cantidad con el no-voto como intermediario.
+
+Si tenemos un trasvase de $N$ votos entre de una candidatura emisora $e$
+y una candidatura receptora $r$,
+la condición para que el trasvase no cambie el resultado seria:
+
+$$
+N < min({R_e}_{min},  P_{max} - {R_r}_{max})
+$$
+
+
+**Implicaciones:**
+
+Una intuición que podemos extraer de aquí es que los restos,
+o votos inútiles,
+funcionan de forma muy parecida, en candidaturas grandes y pequeñas.
+Todas pueden acumular hasta $P_{max}$ votos
 sin que haya cambio en la representación.
 
 Es importante tener en cuenta que
@@ -276,8 +310,11 @@ o para hacer análisis a posteriori.
 A priori no conocemos el valor exacto de $R_i$,
 de cada candidatura
 para poder acotar como variamos los votos.
+Por saber no sabríamos en estos casos los valores
+de $P_{min}$ o $P_{max}$ del cual dependen los restos.
 
-### Teorema de repetición de resultados {#teorema-repeticion-resultados}
+
+## Teorema de repetición de resultados {#teorema-repeticion-resultados}
 
 **Teorema:**
 Dado un escenario inicial de referencia,
